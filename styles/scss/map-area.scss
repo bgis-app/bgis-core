@@ -1,0 +1,7 @@
+@import '~/styles/scss/globals'; // get the global definitions
+
+.bgis-map-area {
+    @include flex(column);
+    flex-grow: 2;
+    position: relative;
+}

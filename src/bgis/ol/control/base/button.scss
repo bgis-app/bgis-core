@@ -1,0 +1,13 @@
+@use "sass:math";
+@import "~/styles/scss/globals";
+
+.bgis-control.ol-control {
+  @include flex(column);
+  background: transparent;
+  padding: math.div($small-grid-size, 2);
+}
+
+.bgis-control .bgis-icon-button {
+  @extend %interactable-icon-button;
+  background-color: $primary-color;
+}

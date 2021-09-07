@@ -1,6 +1,6 @@
 BSD 2-Clause License
 
-Copyright (c) 2021, bgis-app
+Copyright 2005-present, OpenLayers Contributors
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

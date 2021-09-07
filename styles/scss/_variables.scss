@@ -1,0 +1,100 @@
+@use "sass:math";
+
+@use 'sass:color';
+
+/* The minimal width when the desktop view is displayed */
+$desktop-min-width: 768px;
+
+/* Layout limits */
+
+$small-grid-size: 4px;
+$grid-size: 2 * $small-grid-size;
+
+$button-height: 5 * $grid-size; // material design minimal height
+$small-button-height: 3 * $grid-size;
+$icon-height: 5 * $small-grid-size;
+$icon-border-size: 5 * $grid-size;
+$icon-border-radius: math.div($icon-border-size, 2);
+
+$small-icon-height: 2 * $grid-size;
+$small-icon-border-radius: math.div($icon-border-radius, 10);
+
+$header-height: 7 * $grid-size; // The optional header has a fixed height
+$header-show-button-height: 3 * $grid-size;
+$header-show-button-width: 7 * $grid-size;
+
+$map-footer-height: 3 * $grid-size;
+$map-footer-font-size: 3 * $small-grid-size;
+
+/* The font size */
+$font-size: 1em;
+$px-rem-conv-rate: 0.0625;
+
+/**
+* The maximal height & width of the map elements
+*/
+// $desktop-menu-width: calc(33% - 2 * #{$small-grid-size});
+$desktop-menu-width: 90 * $small-grid-size;
+$max-menu-width: 500px; //deprecate
+$min-menu-width: 405px; //deprecate
+$expandable-menu-width: 33%; //deprecate
+$not-expandable-menu-width: calc(#{$expandable-menu-width} - 2 * #{$small-grid-size});
+$not-expandable-scrollable-menu-width: calc(#{$expandable-menu-width} - 3 * #{$small-grid-size});
+/* The size of the map maximize buttons (toggle header and map menus) */
+$maximize-width: 3 * $grid-size;
+$maximize-height: 7 * $grid-size;
+
+/* Header limits
+
+
+/* Search menu limits */
+$search-header-height: 6 * $grid-size;
+
+/* legend menu limits */
+$legend-header-height: 7 * $grid-size + 4 * $grid-size;
+
+/* teaser menu limits */
+
+/* info result limits */
+
+/* splitter limits (for mobile info display) */
+$splitter-height: 2 * $grid-size;
+
+/* map limits */
+
+/* List display limits */
+
+/* colors */
+$lighten-percent: 20;
+$darken-percent: 20;
+
+$primary-color: #e5ecf0 !default;
+$primary-color-light: lighten($primary-color, $lighten-percent) !default;
+$primary-color-dark: darken($primary-color, $darken-percent) !default;
+
+$secondary-color: #fff !default;
+$secondary-color-light: lighten($secondary-color, $lighten-percent) !default;
+$secondary-color-dark: darken($secondary-color, $darken-percent) !default;
+
+// $background-color: #b2c7d3;
+$background-color: white;
+$background-color-light: lighten($background-color, $lighten-percent) !default;
+$background-color-dark: darken($background-color, $darken-percent) !default;
+
+$text-color: #4a4a4a; // #757575;
+$text-color-light: lighten($text-color, $lighten-percent) !default;
+$text-color-dark: darken($text-color, $darken-percent) !default;
+
+$link-color: #00436b;
+$link-color-light: lighten($link-color, $lighten-percent) !default;
+$link-color-dark: darken($link-color, $darken-percent) !default;
+
+$text-selected-color: rgb(172, 55, 27);
+$scrollbar-background-color: rgb(206, 212, 218);
+
+$border-radius: $grid-size;
+
+/* font */
+$font-family: Source Sans Pro, sans-serif; // Die laut Styleguide AT zu verwendende Schrift
+$font-size: 16;
+$icon-font-family: Bund-GIS;

@@ -1,0 +1,23 @@
+@import "~/styles/scss/globals";
+
+.bgis-map .bgis-footer {
+  display: none;
+  @media only screen and (min-width: $desktop-min-width) {
+    @include flex(row);
+    bottom: 0;
+    height: $map-footer-height;
+    position: absolute;
+    right: 5px;
+
+    div {
+      @include box-shadow();
+      background-color: transparentize($primary-color, 0.4);
+      border-radius: 5px 5px 0 0;
+      font-size: 12px;
+      margin: 0 2px;
+      opacity: 0.9;
+      padding: 3px;
+      box-sizing: content-box;
+    }
+  }
+}

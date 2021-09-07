@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "skipLibCheck": true,
+    "outDir": "build/bgis",
+    "lib": ["es7", "dom"],
+    "baseUrl": "./",
+    "types": ["node","jest"],
+    "importHelpers": true,
+    "downlevelIteration": true,
+    "declaration": true,
+    "declarationMap": true,
+    "declarationDir": "build/bgis/types",
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "typedocOptions": {
+    "entryPoints": [ "./src" ],
+    "out": "build/site/api",
+    "name": "bgis API Documentation",
+    "exclude": [
+      "**/index.ts",
+      "**/bgis/util",
+      "**/bgis/ol/interaction",
+      "**/indexClient.ts",
+      "**/indexCore.ts"
+    ]
+  }
+}

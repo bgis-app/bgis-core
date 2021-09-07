@@ -1,0 +1,11 @@
+@use "sass:math";
+
+@import "~/styles/scss/globals";
+
+.bgis-map .bgis-footer .bgis-mouseposition {
+  color: black;
+  font-size: $map-footer-font-size;
+  min-width: 110px;
+  padding: math.div($map-footer-font-size, 2);
+  position: unset;
+}

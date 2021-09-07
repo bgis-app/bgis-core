@@ -1,0 +1,9 @@
+@import "~/styles/scss/globals";
+
+/* geolocate */
+
+.ol-control.ol-geolocate {
+  button.bgis-icon-button {
+    @extend %small-interactable-icon-button;
+  }
+}

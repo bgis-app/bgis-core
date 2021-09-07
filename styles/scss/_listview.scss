@@ -1,0 +1,57 @@
+@import "~/styles/scss/globals"; // get the global definitions
+@import "~/styles/scss/client-content";
+
+.bgis-listview,
+.bgis-listview-splitter {
+  display: none;
+  width: 0;
+  overflow: hidden;
+}
+
+.bgis-listview-splitter {
+  display: none;
+  width: 0;
+  overflow: hidden;
+}
+
+.bgis.show-listview {
+  & .bgis-listview-splitter {
+    @media only screen and (min-width: $desktop-min-width) {
+      display: unset;
+      flex: 0 1 auto;
+      background-color: white;
+      width: 8px;
+      cursor: col-resize;
+    }
+  }
+
+  .bgis-listview {
+    @include flex(column);
+    flex: 0 1 auto;
+    @include box-shadow();
+    transition: all 0.3s ease-in;
+    background-color: $secondary-color;
+    height: 100%;
+    z-index: 4;
+    overflow: hidden;
+
+    @media only screen and (min-width: $desktop-min-width) {
+      position: relative;
+      left: unset;
+      width: $desktop-menu-width;
+    }
+
+    & .bgis-listview-header {
+      @include menu-header(4 * $grid-size);
+      background-color: $secondary-color;
+    }
+
+    & .bgis-listview-body {
+      flex-grow: 1;
+      display: unset;
+      padding: $small-grid-size;
+      overflow: hidden;
+      // @include menu-body(4 * $grid-size);
+    }
+  }
+}

@@ -1,0 +1,100 @@
+@import "~/styles/scss/globals"; // get the global definitions
+@import "~/styles/scss/client-content";
+
+%hide-details {
+  display: none;
+  height: 0;
+  transition: ease-in-out 3s;
+}
+
+.bgis {
+
+  .bgis-detail-body,
+  .bgis-detail-splitter {
+    @extend %hide-details;
+  }
+}
+
+.bgis-sidebar:not(.show-detail) .bgis-detail {
+  width: 0;
+  height: 0;
+  position: relative;
+}
+
+.bgis-search-results {
+  display: none;
+}
+
+.bgis-sidebar.show-detail {
+  .bgis-detail {
+    @include menu(100%);
+    border-radius: 0;
+    margin: unset;
+    box-shadow: none;
+    display: inline-flex;
+    flex-direction: column;
+    flex:0 1 auto;
+    height:33%;
+    z-index: 3;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-height: 2 * $grid-size + 6 * $grid-size + $small-grid-size;
+    max-height: calc(100% - #{$search-header-height + $grid-size});
+    position: absolute;
+
+    @media only screen and (min-width: $desktop-min-width + $grid-size) {
+      width: $desktop-menu-width + $grid-size;
+      max-height: calc(100% - #{$search-header-height + 2 * $grid-size + $legend-header-height});
+      z-index: 2;
+      flex-grow: 4;
+      flex-basis: 10 * $grid-size;
+      position: relative;
+    }
+
+    &.show-search-results {
+      .bgis-search-results {
+        display: unset;
+      }
+
+      .bgis-detail-content {
+        display: none;
+      }
+    }
+  }
+
+  .bgis-detail-body {
+    @include menu-body(0);
+    flex-grow: 2;
+  }
+
+  .bgis-detail-splitter {
+    @media only screen and (min-width: $desktop-min-width) {
+      display: none;
+    }
+
+    background-color: $secondary-color;
+    display: unset;
+    height: $splitter-height;
+    text-align: center;
+    cursor: row-resize;
+    font-weight: bold;
+    transition: unset;
+    color: $scrollbar-background-color;
+    z-index: 3;
+    user-select: none;
+
+    &:hover,
+    &:focus {
+      color: darken($scrollbar-background-color, 20);
+    }
+
+    &>i {
+      font-size: $grid-size * 7;
+    }
+  }
+}
+
+.bgis-map-area.maximizemap .show-detail .bgis-detail-body {
+  @extend %hide-details;
+}

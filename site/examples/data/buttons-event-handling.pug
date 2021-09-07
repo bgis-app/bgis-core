@@ -1,0 +1,15 @@
+extends ../tpl/example.pug
+block vars
+    - var headTitle = 'Beispiel Buttons Event Handling'
+block title
+    | Buttons Event Handling
+block map
+    div(class="bgis-map" id="bgis-map")
+block mapAdditions
+    div
+        label(for="textarea-output", class="sr-only") Ausgabe der Events
+        textarea(class="form-control" id="textarea-output" rows="3" style="width:800px;max-width:80vw")
+block description
+    | Das Beispiel zeigt, wie auf Events der bgis Controls mit OpenLayer-Methodik reagiert werden kann.
+block ts
+    include buttons-event-handling.ts

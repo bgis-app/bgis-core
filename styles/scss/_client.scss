@@ -1,0 +1,75 @@
+@import "~/styles/scss/responsive";
+@import "~/styles/scss/client-content"; // The basic minimal layout definitions
+@import "~/styles/scss/_header";
+@import "~/styles/scss/map-area.scss";
+@import "~/styles/scss/_search";
+@import "~/styles/scss/_legend";
+@import "~/styles/scss/_quicklink";
+@import "~/styles/scss/_map";
+@import "~/styles/scss/_detail";
+@import "~/styles/scss/_listview";
+@import "~/styles/scss/_menu";
+@import "~/styles/scss/_collapsible";
+@import "~/styles/scss/_sidebar";
+@import "~/styles/scss/_checkbox";
+
+.bgis {
+  @include flex(column);
+  @include size(100%, 100%);
+  box-sizing: border-box;
+  color: $text-color;
+  font-family: "Source Sans Pro", sans-serif; // Die laut Styleguide AT zu verwendende Schrift
+  font-size: $font-size;
+  position: relative;
+  z-index: 4;
+
+  background-color: $background-color;
+  /* width */
+  @extend %bgis-scrollbar;
+  a {
+    color: $link-color;
+    text-decoration: none;
+
+    :link {
+      text-decoration: none;
+    }
+
+    :visited {
+      text-decoration: none;
+    }
+
+    :hover {
+      text-decoration: underline;
+      font-weight: bold;
+    }
+  }
+}
+
+// .bgis-icon {
+//   @include icon();
+// }
+
+.bgis-fab-icon {
+  @include fab-icon();
+}
+
+.bgis-scroll-vt {
+  overflow-y: auto;
+}
+
+.bgis-body {
+  position: relative;
+  @include flex(row);
+  flex-grow: 1;
+  height: calc(100% - #{$header-height});
+}
+
+.bgis-sr-only:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}

@@ -1,0 +1,246 @@
+@use 'sass:map';
+@import "~/styles/scss/globals";
+
+.bgis-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+@mixin bgis-rounded-border($vertical-position) {
+  border-#{$vertical-position}-left-radius: $grid-size;
+  border-#{$vertical-position}-right-radius: $grid-size;
+}
+
+@mixin bgis-menu-item($flex-grow: 0.000001, $menu-width: $expandable-menu-width) {
+  @include flex(column);
+  flex-grow: $flex-grow;
+  position: relative;
+  transition: flex 0.5s ease-out;
+
+  @media only screen and (min-width: $desktop-min-width) {
+    width: $menu-width;
+  }
+}
+
+.bgis-list {
+  @extend %list;
+}
+
+.bgis-list-dense {
+  @extend %list-dense;
+}
+
+.bgis-vt {
+  @extend %align-vt;
+}
+
+.bgis-hz {
+  @extend %align-hz;
+  // @extend %content-padding;
+  padding-top: $small-grid-size;
+  padding-bottom: $small-grid-size;
+  & > * {
+    margin-left: $small-grid-size;
+  }
+}
+
+.bgis-hz-dense {
+  @extend %align-hz;
+  @extend %content-padding-dense;
+}
+
+.bgis-dense {
+  padding: 4px 0 4px 0;
+}
+
+/* Typography */
+$font-weights: (
+  regular: 400,
+  medium: 500,
+  light: 300,
+);
+$text-transforms: (
+  sentence: none,
+  allcaps: uppercase,
+);
+
+$typography-map: (
+  headline1: (
+    font: $font-family,
+    font-size: 96,
+    font-weight: light,
+    case: sentence,
+    letter-spacing: -1.5,
+  ),
+  headline2: (
+    font: $font-family,
+    font-size: 60,
+    font-weight: light,
+    case: sentence,
+    letter-spacing: -0.5,
+  ),
+  headline3: (
+    font: $font-family,
+    font-size: 48,
+    font-weight: regular,
+    case: sentence,
+    letter-spacing: 0,
+  ),
+  headline4: (
+    font: $font-family,
+    font-size: 34,
+    font-weight: regular,
+    case: sentence,
+    letter-spacing: 0.25,
+  ),
+  headline5: (
+    font: $font-family,
+    font-size: 24,
+    font-weight: regular,
+    case: sentence,
+    letter-spacing: 0,
+  ),
+  headline6: (
+    font: $font-family,
+    font-size: 20,
+    font-weight: medium,
+    case: sentence,
+    letter-spacing: 0.15,
+  ),
+  body1: (
+    font: $font-family,
+    font-size: 16,
+    font-weight: regular,
+    case: sentence,
+    letter-spacing: 0.5,
+  ),
+  body2: (
+    font: $font-family,
+    font-size: 14,
+    font-weight: regular,
+    case: sentence,
+    letter-spacing: 0.25,
+  ),
+  subtitle1: (
+    font: $font-family,
+    font-size: 16,
+    font-weight: regular,
+    case: sentence,
+    letter-spacing: 0.15,
+  ),
+  subtitle2: (
+    font: $font-family,
+    font-size: 14,
+    font-weight: regular,
+    case: sentence,
+    letter-spacing: 0.1,
+  ),
+  button: (
+    font: $font-family,
+    font-size: 14,
+    font-weight: medium,
+    case: allcaps,
+    letter-spacing: 0,
+  ),
+  overline: (
+    font: $font-family,
+    font-size: 10,
+    font-weight: regular,
+    case: allcaps,
+    letter-spacing: 1.5,
+  ),
+  caption: (
+    font: $font-family,
+    font-size: 12,
+    font-weight: regular,
+    case: sentence,
+    letter-spacing: 0.4,
+  ),
+);
+
+@each $name, $values in $typography-map {
+  .bgis-#{$name} {
+    font-size: #{map-get($values, font-size) * $px-rem-conv-rate}rem;
+    // font-size: #{map-get($values, font-size) / $font-size}rem;
+    font-family: map-get($values, font);
+    font-weight: map-get($font-weights, map-get($values, font-weight));
+    letter-spacing: #{map-get($values, letter-spacing) * $px-rem-conv-rate}rem;
+    text-transform: map-get($text-transforms, map-get($values, case));
+  }
+}
+
+.bgis-grow0 {
+  @include flex-grow(0);
+}
+
+.bgis-grow1 {
+  @include flex-grow(1);
+}
+
+.bgis-grow2 {
+  @include flex-grow(2);
+}
+
+.bgis-txt {
+  @extend %txt;
+}
+
+.bgis-text {
+  color: $text-color-dark;
+}
+
+//.bgis-icon {
+//  @extend %icon;
+//}
+
+.bgis-toggle-icon {
+  & > input {
+    display: none;
+  }
+  & input + .bgis-icon::after {
+    content: attr(data-unchecked);
+  }
+
+  & input:checked + .bgis-icon::after {
+    content: attr(data-checked);
+  }
+}
+
+button.bgis-icon,
+span.bgis-icon,
+div.bgis-icon {
+  @extend %interactable-icon;
+  background: transparent;
+  border: none;
+}
+
+button.bgis-icon {
+  cursor: pointer;
+}
+
+i.bgis-icon {
+  font-size: $icon-height;
+  line-height: $icon-height;
+}
+
+.bgis-fab-icon {
+  @extend %icon-button;
+  border: none;
+}
+
+button.bgis-fab-icon {
+  @extend %interactable-icon-button;
+}
+
+.bgis-media {
+  @extend %media;
+}
+
+.bgis-button {
+  @extend %button;
+}
+
+.bgis-card {
+  @extend %card;
+}

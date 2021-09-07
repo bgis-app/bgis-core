@@ -1,0 +1,12 @@
+extends ../tpl/example.pug
+block vars
+    - var headTitle = 'Beispiel "Core Features" Integration'
+block title
+    | "Core Features" Integration
+block map
+    include ../../../templates/bgis/core
+block description
+    | Dieses Beispiel zeigt eine "Basisintegration" des bgis Clients mit allen Controls im Grundlayout.
+    | Einige Controls erweitern OpenLayer Controls, einige sind bgis Entwicklungen.
+block ts
+    include core-features.ts

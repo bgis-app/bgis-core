@@ -1,0 +1,21 @@
+extends ../tpl/example.pug
+block vars
+    - var headTitle = 'Beispiel Clientseitiger Export'
+block title
+    | Clientseitiger Export
+block map
+    div(class="bgis-map" id="bgis-map")
+block mapAdditions
+    div(class="text-center")
+        div(id="spinner" class="spinner-border" role="status" style="display:none")
+            span(class="sr-only") Loading...
+        div(id="ready" style="display:none")
+            strong Fertig!
+    p
+        strong Achtung! Es werden mehrere Dateien vom Client berechnet und heruntergeladen. Dies kann einige Sekunden dauern.&nbsp;
+        | Um alle Dateien zu erhalten, müssen Sie Ihrem Browser erlauben, mehrere Dateien downzuloaden.
+block description
+    | bgis bietet die Funktionalität, Teile der Anzeige clientseitig als png zu exportieren. Die Map, die Scaleline und das Overview Control werden
+    | in diesem Beispiel in verschiedenen Größen und Skalierungen vom Browser gerendert und schließlich als Download angeboten.
+block ts
+    include export.ts

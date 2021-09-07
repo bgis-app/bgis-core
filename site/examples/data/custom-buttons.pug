@@ -1,0 +1,17 @@
+extends ../tpl/example.pug
+block vars
+    - var headTitle = 'Beispiel Custom Buttons'
+block title
+    | Custom Buttons
+block map
+    div(class="bgis-map" id="bgis-map")
+block mapAdditions
+    div
+        label(for="textarea-output", class="sr-only") Ausgabe der Events
+        textarea(class="form-control" id="textarea-output" rows="3" style="width:800px;max-width:80vw")
+block description
+    | Das Beispiel zeigt, wie mit Hilfe von bgis Basisklassen eigene Buttons/Controls erstellt werden können.
+    | Die bereits integrierte <a href="fonts.html">bgis Font-Datei</a> kann dafür entweder direkt über Unicode oder über eine
+    | entsprechende CSS-Klasse für die Icons verwendet werden.
+block ts
+    include custom-buttons.ts

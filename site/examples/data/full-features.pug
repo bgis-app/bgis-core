@@ -1,0 +1,25 @@
+extends ../tpl/example.pug
+block vars
+    - var headTitle = 'Beispiel "Full Features" Integration'
+block title
+    | "Full Features" Integration
+block mapContainer
+        div(class="mb-3")
+            button(class="btn btn-sm btn-outline-secondary mr-1" onclick='document.querySelector(".bgis-quicklink").classList.toggle("hide");return false;') toggle quicklink
+            button(class="btn btn-sm btn-outline-secondary mr-1" onclick='document.querySelector(".bgis-sidebar").classList.toggle("show-detail");return false;') toggle details
+            button(class="btn btn-sm btn-outline-secondary mr-1" onclick='document.querySelector(".bgis-detail").classList.toggle("show-search-results");return false;') toggle searchresults in details
+            button(class="btn btn-sm btn-outline-secondary mr-1" onclick='document.querySelector(".bgis").classList.toggle("show-listview");return false;') toggle listview
+            button(class="btn btn-sm btn-outline-secondary mr-1" onclick='document.querySelector(".bgis-menu").classList.toggle("show");return false;') toggle menu
+            p
+            small(lang="en") These buttons partly simulate the click handlers of your framework (e.g. React, Angular)
+        div(class="map-border renderedHtml" style="height:500px")
+            block map
+                include ../../../templates/bgis/client
+
+block description
+    | Das Beispiel zeigt den kompletten Rahmen, den bgis bietet. Die <a href="example-core-features.html">Core-Features</a> wurden ergänzt durch einen Header für
+    | z.B. Anwendungsnamen, Links und Logo. Im linken Bereich sieht man außerdem Vorlagen für erweiterte Karteninteraktionen, wie z.B Suche, Suchergebnisliste und Detailansichten.
+    | Diese Vorlagen sind zwar mit HTML und CSS durch bgis umgesetzt, sie dienen jedoch nur als Ausgangspunkt einer möglichen Javascript-Integration durch ein
+    | externes Framework wie React, Angular oder Vue.js. Die Buttons im oberen Bereich und das Einbinden der UiInteraction-Klasse simulieren (unvollständig) mögliche Clickhandler eines externen Frameworks.
+block ts
+    include full-features.ts

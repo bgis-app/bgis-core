@@ -1,0 +1,212 @@
+// =============================================================================
+// String Replace
+// =============================================================================
+@function str-replace($string, $search, $replace: "") {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+// =============================================================================
+// Font Face
+// =============================================================================
+
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+  $src: null;
+
+  $extmods: (
+    eot: "?",
+    svg: "#" + str-replace($name, " ", "_"),
+  );
+
+  $formats: (
+    otf: "opentype",
+    ttf: "truetype",
+  );
+
+  @each $ext in $exts {
+    $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+    $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+    $src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+  }
+
+  @font-face {
+    font-family: quote($name);
+    font-style: $style;
+    font-weight: $weight;
+    src: $src;
+  }
+}
+
+@mixin flex($direction) {
+  display: inline-flex;
+  flex-direction: $direction;
+}
+
+@mixin flex-grow($flex-grow: 0) {
+  flex-grow: $flex-grow;
+}
+
+@mixin size($width, $height) {
+  height: $height;
+  width: $width;
+}
+
+@mixin box-shadow($level: 1) {
+  @if $level==1 {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  } @else if $level==2 {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  } @else if $level==3 {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  } @else if $level==4 {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  } @else if $level==5 {
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  }
+}
+
+@mixin box-shadow-right() {
+  box-shadow: 2px 1px 2px -0px rgba(0, 0, 0, 0.12), 2px 1px 2px -4px rgba(0, 0, 0, 0.24);
+}
+
+@mixin icon($icon: "-", $icon-font-family: $icon-font-family, $size: 24px) {
+  color: $text-color;
+  direction: ltr;
+  display: inline-block;
+  font-family: $icon-font-family;
+  /* Support for IE. */
+  font-feature-settings: "liga";
+  font-size: $size;
+  /* Preferred icon size */
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: normal;
+  line-height: 1;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  white-space: nowrap;
+  word-wrap: normal;
+  :after {
+    content: $icon;
+  }
+}
+
+@mixin fab-icon($icon: "", $icon-font-family: $icon-font-family, $size: 24px) {
+  @include icon($icon, $icon-font-family, $size: 24px);
+  @include box-shadow(1);
+  @include size($icon-border-size, $icon-border-size);
+  background-color: $primary-color;
+  border-radius: $icon-border-radius;
+  text-align: center;
+  line-height: $icon-border-size;
+  & > i.bgis-icon {
+    display: block;
+    line-height: $icon-border-size;
+  }
+}
+
+@mixin menu($height: 7 * $grid-size, $z-index: 0) {
+  @include box-shadow();
+  @include flex(column);
+  flex-grow: 0;
+  border-radius: $small-grid-size;
+  overflow: hidden;
+  background-color: $secondary-color;
+  position: relative;
+  transition: flex 0.1s ease-out;
+  margin: $small-grid-size;
+  min-height: 0;
+  flex-basis: $height; // Needed for flex grow and shrink.
+  z-index: $z-index;
+  @media only screen and (min-width: $desktop-min-width) {
+    width: $desktop-menu-width;
+  }
+}
+
+@mixin menu-header($height: 7 * $grid-size) {
+  box-sizing: border-box;
+  // padding: $small-grid-size 2 * $grid-size 3 * $small-grid-size 2 * $grid-size;
+  padding: 2 * $grid-size;
+  align-items: center;
+  @include flex(row);
+  overflow: hidden;
+  background-color: $primary-color;
+  width: 100%;
+  height: $height;
+  & > * {
+    margin: 0 3 * $small-grid-size 0 3 * $small-grid-size;
+    height: $height - 4 * $small-grid-size;
+  }
+  & :first-child {
+    margin-left: unset;
+  }
+  & :last-child {
+    margin-right: unset;
+  }
+}
+
+@mixin menu-body($header-height: 7 * $grid-size) {
+  @include flex(column);
+  flex-grow: 1;
+  overflow: hidden;
+  background-color: $secondary-color;
+  width: auto;
+  height: calc(100% - #{$header-height + 2 * $small-grid-size});
+  padding: $small-grid-size $grid-size $small-grid-size 2 * $grid-size;
+  & > * {
+    padding-right: $grid-size;
+    background-color: $secondary-color; // the content must be also filled
+  }
+}
+
+@mixin interactable() {
+  &:hover {
+    @extend %hover-icon;
+  }
+  &:disabled {
+    @extend %disabled-icon;
+  }
+}
+
+@mixin desktop-only($background-color: $primary-color) {
+  @media only screen and (min-width: $desktop-min-width) {
+    display: unset;
+    background-color: $background-color;
+  }
+  display: none;
+}
+
+@mixin hide-on-mobile() {
+  @media only screen and (max-width: $desktop-min-width) {
+    display: none;
+  }
+}
+
+@mixin bottom-right($bottom) {
+  position: absolute;
+  right: $grid-size;
+  .ol-control.bgis-control .bgis-icon-button {
+    background-color: $primary-color;
+    font-size: $small-icon-height;
+  }
+  .ol-control.bgis-control .bgis-icon-button::after {
+    line-height: $button-height;
+  }
+  @media only screen and (min-width: $desktop-min-width) {
+    bottom: $bottom;
+  }
+}
+
+@mixin center-button() {
+  height: auto;
+}

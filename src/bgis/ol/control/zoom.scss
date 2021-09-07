@@ -1,0 +1,29 @@
+@import "~/styles/scss/globals";
+
+/* zoom */
+
+.ol-control.zoom-container {
+  @include flex(column);
+  @include hide-on-mobile();
+
+  .ol-zoom-in {
+    @extend %zoom-button;
+    margin-bottom: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom: 1px solid $secondary-color-dark !important; // TODO find a way around !important
+  }
+
+  .ol-zoom-out {
+    @extend %zoom-button;
+    margin-top: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+  }
+}
+
+.bgis-map .ol-control .zoom-in:hover,
+.bgis-map .ol-control .zoom-out:hover {
+  color: $text-color-dark;
+  font-weight: bolder;
+}

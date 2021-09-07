@@ -1,0 +1,24 @@
+* {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1rem;
+}
+
+.header  {
+    background-color: #e5ecf0;
+    display: inline-flex;
+    flex-direction: row;
+    width:100%;
+    font-weight: bolder;
+}
+
+.grow1 {
+    flex-grow:1;
+}
+
+.header > * {
+    padding: 4px 16px 12px 16px;
+}
+
+.footer {
+    background-color: #e5ecf0;
+}

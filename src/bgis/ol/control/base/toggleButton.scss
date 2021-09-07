@@ -1,0 +1,50 @@
+@import "~/styles/scss/globals";
+
+/* toggleButton */
+
+.bgis-control.ol-control {
+  background: transparent;
+
+  input {
+    display: none;
+  }
+
+  .bgis-icon-button {
+    @extend %interactable-icon-button;
+    background-color: $primary-color;
+    text-align: center;
+    line-height: 40px;
+  }
+
+  input + .bgis-icon-button::after {
+    content: attr(data-unchecked);
+  }
+
+  input:checked + .bgis-icon-button::after {
+    content: attr(data-checked);
+  }
+}
+
+.bgis-overlay-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  pointer-events: auto;
+  .bgis-show-header > & {
+    border-bottom-left-radius: $small-grid-size;
+    border-bottom-right-radius: $small-grid-size;
+  }
+  .bgis-hide-sidebar > &,
+  .bgis-show-sidebar > & {
+    border-top-right-radius: $small-grid-size;
+    border-bottom-right-radius: $small-grid-size;
+  }
+}
+
+.bgis-sidebar > .bgis-overlay-bg {
+  background-color: transparent;
+}

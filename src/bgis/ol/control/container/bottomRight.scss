@@ -1,0 +1,49 @@
+@use "sass:math";
+
+@import "~/styles/scss/globals";
+
+.bgis-map {
+  .bgis-bottom-right-horizontal {
+    @include bottom-right($map-footer-height + $grid-size);
+    align-items: center;
+    bottom: $grid-size;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+
+    button.bgis-icon-button {
+      @include hide-on-mobile();
+    }
+  }
+
+  .bgis-bottom-right-vertical {
+    display: none;
+  }
+
+  .bgis-bottom-right-vertical.show {
+    @include flex(column);
+    @include bottom-right($icon-border-size + $grid-size);
+    right: 0;
+
+    .bgis-control-button-text-container {
+      position: absolute;
+      right: $button-height * 1.3;
+      padding-top: math.div($button-height, 2) - ($font-size * 0.7);
+      width: 200px;
+      text-align: right;
+
+      span {
+        font-size: #{$font-size * 0.7}px;
+        color: $primary-color;
+      }
+    }
+  }
+
+  .ol-control {
+    position: unset;
+  }
+}
+
+.bgis-bottom-right-overlay {
+  z-index: 1000;
+}

@@ -1,0 +1,10 @@
+extends dev-site
+block content
+    div
+        button(onclick='document.querySelector(".bgis-quicklink").classList.toggle("hide");return false;') toggle quicklink
+        button(onclick='document.querySelector(".bgis-sidebar").classList.toggle("show-detail");return false;') toggle details
+        button(onclick='document.querySelector(".bgis-detail").classList.toggle("show-search-results");return false;') toggle searchresults in details
+        button(onclick='document.querySelector(".bgis").classList.toggle("show-listview");return false;') toggle listview
+        button(onclick='document.querySelector(".bgis-menu").classList.toggle("show");return false;') toggle menu
+    div(style='height:80vh;width:95vw;position:relative;')
+        include client

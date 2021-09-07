@@ -1,0 +1,43 @@
+@import "~/styles/scss/globals"; // get the global definitions
+
+input.bgis-checkbox {
+    height: 2*$grid-size;
+    width: 2*$grid-size;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    border: 1px solid $text-color;
+    border-radius: $small-grid-size;
+    outline: none;
+    transition-duration: 0.3s;
+    background-color: $secondary-color;
+    cursor: pointer;
+}
+
+input.bgis-checkbox:checked {
+    border: 1px solid $text-color-dark;
+    background-color: $primary-color;
+}
+
+input.bgis-checkbox:checked::after {
+    content: "✓";
+    display: block;
+    text-align: center;
+    color: $text-color-dark;
+    font-size: $small-grid-size * 2.5;
+    font-weight: bolder;
+}
+
+input.bgis-checkbox:indeterminate::after {
+    content: "-";
+    display: block;
+    text-align: center;
+    color: $text-color-dark;
+    font-size: $small-grid-size * 2.5;
+    font-weight: bolder;
+}
+
+input.bgis-checkbox:active {
+    border: 2px solid $text-color-dark;
+}

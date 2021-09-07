@@ -1,0 +1,27 @@
+@import "~/styles/scss/globals"; // get the global definitions
+@import "~/styles/scss/client-content";
+
+$app-menu-width: 95%;
+
+.bgis-menu {
+  bottom: unset;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  z-index: 4;
+  background-color: $secondary-color;
+}
+
+.bgis-menu.show {
+  position: absolute;
+  display: inline-flex;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: unset;
+  width: $app-menu-width;
+  @media only screen and (min-width: $desktop-min-width) {
+    width: $desktop-menu-width;
+  }
+}

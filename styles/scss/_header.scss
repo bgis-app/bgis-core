@@ -1,0 +1,44 @@
+@import "~/styles/scss/globals"; // get the global definitions
+
+.bgis-header,
+.bgis-header.hide {
+  display: none;
+  height: 0;
+}
+
+.bgis-header {
+  @media only screen and (min-width: $desktop-min-width) {
+    flex: 0 0 $header-height;
+    @include box-shadow();
+    background-color: $secondary-color;
+    display: inline-flex;
+    z-index: 2;
+    nav {
+      @include flex(row);
+      flex-grow: 1;
+      align-items: center;
+      height: $header-height;
+      text-align: center;
+      padding-left: 2 * $grid-size;
+      padding-right: 2 * $grid-size;
+
+      a {
+        color: $text-color-dark;
+        font-size: $small-icon-height;
+        margin-left: 4 * $grid-size;
+      }
+    }
+  }
+}
+
+.bgis .bgis-header .bgis-hide-header {
+  border-left: solid 1px $secondary-color-dark;
+  padding-left: 2 * $grid-size;
+  padding-right: 0;
+  font-size: $small-icon-height;
+  height: $header-height;
+  line-height: $header-height;
+  color: $text-color-dark;
+  margin-left: 2 * $grid-size;
+  cursor: pointer;
+}

@@ -1,0 +1,27 @@
+.ol-attribution.ol-collapsed ul {
+  display: inline-block !important;
+}
+
+.ol-attribution.bgis-copyright {
+  button {
+    display: none;
+  }
+
+  ul {
+    color: #000;
+    margin: 0;
+    padding: 0 5px;
+    text-shadow: 0 0 2px #fff;
+    display: inline-block;
+  }
+
+  li {
+    display: inline;
+    list-style: none;
+    font-size: $map-footer-font-size;
+
+    & > * {
+      font-size: $map-footer-font-size;
+    }
+  }
+}

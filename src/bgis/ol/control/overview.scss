@@ -1,0 +1,32 @@
+@use "sass:math";
+
+@import "~/styles/scss/globals";
+
+$overview-image-width: 380;
+$overview-image-height: 216;
+
+.bgis-map {
+
+  .bgis-overview-image {
+     display:none;
+
+    @media only screen and (min-width: $desktop-min-width) {
+      left: 4px;
+      display: inline-flex;
+      flex-direction: row;
+      bottom: 4px;
+      position: absolute;
+      width: calc(40px + 10vw);
+      height: calc(#{math.div(40 * $overview-image-height, $overview-image-width)}px + #{ math.div(10 * $overview-image-height, $overview-image-width) }vw);
+
+      figure {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+}
+

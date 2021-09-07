@@ -1,0 +1,14 @@
+coverage
+node_modules
+.project
+.settings
+.idea
+jest
+docs
+types
+.vscode
+.rpt2_cache
+yarn-error.log
+debug.log
+build
+.npmrc

@@ -1,0 +1,19 @@
+html(lang="en")
+    head
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        title b-gis #{title}
+        style
+            include site.css
+    body
+        div
+            div(class="header")
+                a(href="./index.html") &#x2302;
+                span b-gis (Bundes WebGIS Client)
+                span(class="grow1") &nbsp;
+                a(href="https://bgis-app.github.io/" target="_blank") docs
+                a(href="https://bgis-app.github.io/examples.html" target="_blank") examples
+                a(href="https://bgis-app.github.io/api.html" target="_blank") API
+                a(href="https://github.com/bgis-app/bgis-core" target="_blank") Repository
+            block content
+            div(class="footer") &copy; by b-gis Team</div>

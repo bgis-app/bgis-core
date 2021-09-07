@@ -1,0 +1,17 @@
+extends ../tpl/example.pug
+block vars
+    - var headTitle = 'Beispiel Geolocation Button'
+block title
+    | Geolocation Button
+block map
+    div(class="bgis-map" id="bgis-map")
+block mapAdditions
+    div
+        label(for="textarea-output", class="sr-only") Ausgabe der Events
+        textarea(class="form-control" id="textarea-output" rows="3" style="width:800px;max-width:80vw")
+block description
+    | Das Beispiel zeigt die vorhandene Implementierung des Geolocate Controls (das Fadenkreuz rechts oben bzw. links
+    | unten in der Ansicht für kleine Ausgabegeräte), mit dem der angezeigte Kartenausschnitt auf die eigene Position
+    | geschoben wird. Außerdem ersichtlich mit welchen Events die Funktionalität des Controls erweitert werden könnte.
+block ts
+    include geolocate.ts

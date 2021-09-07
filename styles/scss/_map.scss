@@ -1,0 +1,21 @@
+@import "~/styles/scss/globals"; // get the global definitions
+
+.bgis-map {
+  display: inline-block;
+  /*background-color:  orange;*/
+  flex-grow: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+   z-index: 0;
+}
+
+.bgis-sidebar.show-detail ~ .bgis-map {
+  transition: flex 0.1s ease-out;
+  bottom:2 * $grid-size + 6 * $grid-size + $small-grid-size;
+  @media only screen and (min-width: $desktop-min-width + $grid-size) {
+    bottom:0px;
+  }
+}
