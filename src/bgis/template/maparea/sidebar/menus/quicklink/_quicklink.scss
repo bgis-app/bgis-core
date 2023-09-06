@@ -1,0 +1,18 @@
+.bgis-quicklink {
+    @extend %menu;
+}
+
+.bgis-map-area.hide-quicklink .bgis-quicklink {
+    @apply hidden;
+}
+
+
+
+.bgis-quicklink-header {
+   @apply absolute  right-smgs top-0 z-20;
+}
+
+.bgis-quicklink-body {
+    @apply inline-flex gap-2 bg-primary rounded-b pt-3smgs pb-gs px-2gs z-10 shadow-lg text-center;
+}
+

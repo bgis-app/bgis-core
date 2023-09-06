@@ -1,1 +1,9 @@
 @import 'control';
+@import '~/src/bgis/variables';
+
+/* stylelint-disable selector-pseudo-class-no-unknown */
+:export {
+  /* stylelint-disable property-no-unknown */
+  desktopMinWidth: $desktop-view-with-val;
+  fontFamily: $font-family;
+}

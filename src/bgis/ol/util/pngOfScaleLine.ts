@@ -1,6 +1,6 @@
 import {dataUrlForSvgString, dataUrlToImage} from "../../util/base64";
 import {CompositeControl, ScaleLine} from "../control";
-import {PluggableMap} from "ol";
+import {Map} from "ol";
 import {Control} from "ol/control";
 
 /**
@@ -10,7 +10,7 @@ import {Control} from "ol/control";
  * @param scaleFactor
  * @param withBackground
  */
-export const getPngOfScaleLine = (map: PluggableMap, minWidth?: number, scaleFactor = 1, withBackground = true): Promise<string> => {
+export const getPngOfScaleLine = (map: Map, minWidth?: number, scaleFactor = 1, withBackground = true): Promise<string> => {
 
   return new Promise((resolve, reject) => {
     let scaleLineControlFound = false;

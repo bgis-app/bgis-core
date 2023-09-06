@@ -1,0 +1,11 @@
+.bgis .bgis-header {
+  @apply hidden md:z-30 md:inline-flex md:flex-row md:flex-grow-0 md:flex-shrink-0 md:basis-5 md:bg-secondary md:shadow-md  md:pt-gs md:px-2gs md:pb-gs md:gap-3gs md:justify-center md:items-center;
+}
+
+  .bgis.hide-header .bgis-header {
+    @apply hidden;
+}
+
+
+
+

@@ -1,9 +1,9 @@
 # BGIS Core
 
-bgis (Kurzform für BundesGIS) ist ein generischer Webmapping-Client, der im Auftrag des Bundesministeriums für 
-Landwirtschaft, Regionen und Tourismus (BMLRT) entwickelt wurde. Der OpenSource-Client soll als Basis 
-zur Nutzung in anderen öffentlichen Stellen und auch im privaten Umfeld eingesetzt werden. Der Client 
-basiert auf der jeweils aktuellen Version von Openlayers und zecihnet sich durch einen modularen Aufbau aus.
+bgis (Kurzform für BundesGIS) ist ein generischer Webmapping-Client, der im Auftrag des Bundesministerium für Land- und Forstwirtschaft, 
+Regionen und Wasserwirtschaft (BML) entwickelt wurde. Der OpenSource-Client soll als Basis zur Nutzung in anderen öffentlichen 
+Stellen und auch im privaten Umfeld eingesetzt werden. Der Client basiert auf der jeweils aktuellen Version von Openlayers und 
+zeichnet sich durch einen modularen Aufbau aus.
 
 Die Hauptmerkmale von bgis sind unter anderem:
 

@@ -56,4 +56,5 @@ export const downloadBase64EncFile = (contentBase64: string, fileName: string): 
   downloadLink.target = '_self';
   downloadLink.download = fileName;
   downloadLink.click();
+  downloadLink.remove();
 }

@@ -20,28 +20,28 @@ describe("Proj test", () => {
     it("check EPSG:31287", () => {
       expect(getProjection("EPSG:31287")).not.toBeUndefined();
       // console.log(getProjection("EPSG:31287"));
-      expect(getProjection("EPSG:31287").getExtent()).not.toBeUndefined();
+      expect(getProjection("EPSG:31287")?.getExtent()).not.toBeUndefined();
     });
 
     it("check EPSG:31254", () => {
       expect(getProjection("EPSG:31254")).not.toBeUndefined();
-      expect(getProjection("EPSG:31254").getExtent()).not.toBeUndefined();
+      expect(getProjection("EPSG:31254")?.getExtent()).not.toBeUndefined();
     });
     it("check EPSG:31255", () => {
       expect(getProjection("EPSG:31255")).not.toBeUndefined();
-      expect(getProjection("EPSG:31255").getExtent()).not.toBeUndefined();
+      expect(getProjection("EPSG:31255")?.getExtent()).not.toBeUndefined();
     });
     it("check EPSG:31256", () => {
       expect(getProjection("EPSG:31287")).not.toBeUndefined();
-      expect(getProjection("EPSG:31287").getExtent()).not.toBeUndefined();
+      expect(getProjection("EPSG:31287")?.getExtent()).not.toBeUndefined();
     });
     it("check EPSG:32632", () => {
       expect(getProjection("EPSG:32632")).not.toBeUndefined();
-      expect(getProjection("EPSG:32632").getExtent()).not.toBeUndefined();
+      expect(getProjection("EPSG:32632")?.getExtent()).not.toBeUndefined();
     });
     it("check EPSG:32633", () => {
       expect(getProjection("EPSG:32633")).not.toBeUndefined();
-      expect(getProjection("EPSG:32633").getExtent()).not.toBeUndefined();
+      expect(getProjection("EPSG:32633")?.getExtent()).not.toBeUndefined();
     });
 
     it("check EPSG:3857 (Google, Basemap Austria)", () => {

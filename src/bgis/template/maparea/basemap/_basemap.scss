@@ -1,0 +1,17 @@
+.bgis-basemap {
+    @apply hidden ;
+}
+
+.bgis-map-area.show-basemap .bgis-basemap {
+    @apply inline-flex flex-col absolute left-0 bottom-0 right-0 z-20 shadow-lg bg-secondary pl-2 pr-2 pt-smgs pb-2 border-t border-text-light border-0 text-center ;
+}
+
+.bgis-basemap-header {
+    @apply absolute inline-block right-smgs top-0   ;
+}
+
+.bgis-basemap-body {
+   @apply inline-flex flex-col overflow-x-auto overflow-y-hidden  ;
+}
+
+

@@ -3,12 +3,15 @@ import {Container} from "./Container";
 import {ToggleButton, ToggleEvent} from "../base";
 import BaseEvent from "ol/events/Event";
 import {ObjectOnSignature} from "ol/Object";
-import {OnReturn} from "ol/Observable";
+import {EventsKey, listen} from "ol/events";
+import EventType from "ol/events/EventType";
+import {Map} from "ol";
+import cssVariables from "../../_index.scss";
 
 /**
- * Options for the {@linkcode BottomRight} container
+ * Options for the {@link BottomRight} container
  */
-export interface Options {
+export interface BottomRightOptions {
   /** An array of horizontal child controls **/
   horizontalControls: Control[],
   /** An array of vertical child controls **/
@@ -16,44 +19,54 @@ export interface Options {
 }
 
 /**
- * The extended signature for the on method
+ * The extended signature for the on method of the {@link BottomRight} container
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type BottomRightOnSignature<Return> = ((type: "toggle" | "toggle"[], listener: (event: ToggleEvent) => any) => Return) & ObjectOnSignature<Return>;
+export type BottomRightOnSignature<Return> =
+  ((type: "toggle" | "toggle"[], listener: (event: ToggleEvent) => unknown) => Return)
+  & ObjectOnSignature<Return>;
 
 /**
- * A {@linkcode Container} for diplay on the bottom right corner.
- * We have horizonatl controls and vertical controls. The visibility of vertical
- * controls is controlled by a {@linkcode ToggleButton}
+ * A {@link Container} for display in the bottom right corner.
+ * We have horizontal controls and vertical controls. The visibility of vertical
+ * controls is controlled by a {@link ToggleButton}
  */
 export class BottomRight extends Container {
 
-  /** The {@linkcode ToggleButton} which toggles the visibility of the vertical controls **/
-  private readonly toggleButton: ToggleButton | null;
+  /** The key for the "moved from horizontal" flag property **/
+  static MOVED_FROM_HORIZONTAL_KEY = 'bgis-moved-from-horizontal';
 
   /**
    * @override
    */
-  public on!: BottomRightOnSignature<OnReturn>;
+  public on!: BottomRightOnSignature<EventsKey>;
+
+  /** The {@link ToggleButton} which toggles the visibility of the vertical controls **/
+  protected toggleButton: ToggleButton | null;
+
+  /** The horizontal controls **/
+  protected horizontalControls: Control[] = [];
 
   /**
    *
    * @param options The options
-   * @event ToggleEvent The event fired when the {@linkcode ToggleButton} is clicked
+   * @event ToggleEvent The event fired when the {@link ToggleButton} is clicked
    */
-  constructor(options: Options) {
+  constructor(options: BottomRightOptions) {
 
     let toggleButton = null;
-    if(options.verticalControls && options.verticalControls.length>0) {
-      const containerToToggle = new Container({ styleClass: 'bgis-bottom-right-vertical', childControls: options.verticalControls});
-      toggleButton = new ToggleButton({ containerToToggle, containerClassName: 'ol-control bgis-control bgis-bottom-right-overlay', unicode: 0xe907, unicodeToggled: 0xe924, tooltip: 'mehr...' });
+
+    if (options.verticalControls && options.verticalControls.length > 0) {
+      toggleButton = BottomRight.createToggle(options.verticalControls);
       options.horizontalControls.push(toggleButton);
     }
-    const opts = options ? options :{};
-    super({...opts , styleClass: 'bgis-bottom-right-horizontal', childControls: options.horizontalControls });
+
+    const opts = options ? options : {};
+    super({...opts, styleClass: 'bgis-bottom-right-horizontal', childControls: options.horizontalControls});
+
+    this.horizontalControls = options.horizontalControls;
 
     this.toggleButton = toggleButton;
-    if(this.toggleButton!=null) {
+    if (this.toggleButton != null) {
       this.toggleButton.addEventListener("toggle", (event): boolean => {
         this.dispatchEvent(event as BaseEvent);
         return true;
@@ -63,10 +76,106 @@ export class BottomRight extends Container {
   }
 
   /**
-   * A getter for the {@linkcode ToggleButton}
+   * A getter for the {@link ToggleButton}
    */
   public getToggleButton(): ToggleButton | null {
     return this.toggleButton;
+  }
+
+  /**
+   *
+   * @param map
+   */
+  public setMap(map: Map): void {
+    const defaultView = map.getOwnerDocument().defaultView;
+    if(defaultView) {
+      listen(defaultView, EventType.RESIZE, () => {
+        this.handleHorizontalControlsForSize();
+      }, this);
+    }
+    super.setMap(map);
+    this.handleHorizontalControlsForSize();
+  }
+
+  /**
+   * The handler for moving the horizontal controls depending on the client width
+   * @protected
+   */
+  protected handleHorizontalControlsForSize(): void {
+    const map = this.getMap();
+    if(map) {
+      const documentWidth: number = map.getOwnerDocument().documentElement.clientWidth;
+      if(documentWidth >= cssVariables.desktopMinWidth) { // desktop
+        if(this.toggleButton?.getContainerToToggle()) {
+          const ctlsToMove = this.toggleButton.getContainerToToggle().getChildControls().filter(ctl => ctl.get(BottomRight.MOVED_FROM_HORIZONTAL_KEY)===true);
+          if(ctlsToMove.length>0) {
+            this.getElement().innerHTML = '';
+            ctlsToMove.forEach(ctl => {
+              ctl.unset(BottomRight.MOVED_FROM_HORIZONTAL_KEY);
+              ctl.setTarget(this.getElement());
+              ctl.setMap(map);
+            });
+            this.horizontalControls = ctlsToMove;
+            this.toggleButton.getContainerToToggle().setChildControls(this.toggleButton.getContainerToToggle().getChildControls().filter(ctl => !ctlsToMove.includes(ctl)));
+
+            // if there are controls left in the toggle button
+            // then recreate the toggle button
+            if(this.toggleButton.getContainerToToggle().getChildControls().length>0) {
+              const isToggled = this.toggleButton.isToggled;
+              const toggleButton = BottomRight.createToggle(this.toggleButton.getContainerToToggle().getChildControls());
+              toggleButton.setTarget(this.getElement());
+              toggleButton.setMap(map);
+              this.toggleButton = toggleButton;
+              this.horizontalControls.push(toggleButton);
+              if(isToggled) {
+                this.toggleButton.handleEvent(new BaseEvent(EventType.CLICK));
+              }
+            } else {
+              this.toggleButton = null;
+            }
+
+          }
+        }
+      } else { // mobile
+        const ctlsToMove = this.horizontalControls.filter(ctl => !(ctl instanceof ToggleButton) && ctl.get(BottomRight.MOVED_FROM_HORIZONTAL_KEY)!==true);
+        if(this.toggleButton?.getContainerToToggle().getChildControls()
+          && this.toggleButton?.getContainerToToggle().getChildControls().length>0 || ctlsToMove.length>1) {
+          if(!this.toggleButton?.getContainerToToggle()) {
+            this.toggleButton = BottomRight.createToggle([]);
+            this.toggleButton.setTarget(this.getElement());
+            this.toggleButton.setMap(map);
+          }
+          ctlsToMove.forEach(ctl => {
+            ctl.set(BottomRight.MOVED_FROM_HORIZONTAL_KEY, true);
+            if(this.toggleButton) {
+              ctl.setTarget(this.toggleButton.getContainerToToggle().getElement());
+            }
+            ctl.setMap(map);
+          });
+          this.toggleButton?.getContainerToToggle().getChildControls().push(...ctlsToMove);
+          this.horizontalControls = this.horizontalControls.filter(ctl => !ctlsToMove.includes(ctl));
+        }
+      }
+    }
+  }
+
+  /**
+   * Creates the {@link ToggleButton} to toggle a {@link Container}
+   * with the give controls inside
+   * @param verticalControls
+   */
+  protected static createToggle(verticalControls: Control[]): ToggleButton {
+    const containerToToggle = new Container({
+      styleClass: 'bgis-bottom-right-vertical',
+      childControls: verticalControls
+    })
+    return new ToggleButton({
+      containerToToggle,
+      containerClassName: 'ol-control bgis-control bgis-bottom-right-overlay',
+       iconClassName : 'bgis-icon-more-four',
+       iconClassNameToggled:'bgis-icon-times',
+      tooltip: 'mehr...'
+    });
   }
 
 }

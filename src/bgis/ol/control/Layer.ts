@@ -13,7 +13,7 @@ export class Layer extends Button {
   public constructor(options?: ButtonOptions) {
     const opts = options || {};
 
-    super({ unicode:0xe938, tooltip: 'Begleitkarten verwalten', ...opts });
+    super({ iconClassName:'bgis-icon-layer-group', tooltip: 'Begleitkarten verwalten', ...opts });
 
   }
 

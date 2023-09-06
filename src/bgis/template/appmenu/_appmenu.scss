@@ -1,0 +1,18 @@
+.bgis-app-menu {
+    @apply hidden;
+}
+
+.bgis-body.show-app-menu .bgis-app-menu {
+    @apply inline-flex flex-col bg-secondary shadow-lg absolute top-0 left-0 bottom-0 w-full  md:w-listviewwidth border-r-2 border-text-lighter shadow-lg;
+    z-index: 150;
+}
+
+
+.bgis-app-menu-header {
+  @apply inline-flex flex-row    gap-1 pt-gs px-2gs pb-3smgs z-10 space-x-1  justify-center items-center;
+}
+
+
+.bgis-app-menu-body {
+  @apply inline-flex flex-col grow h-full overflow-y-auto overflow-x-hidden px-2gs py-gs;
+}

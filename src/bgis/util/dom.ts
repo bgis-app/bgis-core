@@ -54,7 +54,7 @@ export const removeChildrenIfExist = (element: HTMLElement | null, className: st
   if (element != null) {
     const children = element.querySelectorAll(`.${className}`);
     if (children != null && children.length>0) {
-      children.forEach(child => child.parentElement!.removeChild(child));
+      children.forEach(child => child.parentElement&&child.parentElement.removeChild(child));
     }
   }
 }
@@ -99,6 +99,41 @@ export const toggleClassOnClick = (clickSelectors: string | string[], selectors2
       toggleClass(selectors2toggle, toggleClassNames);
       event.stopPropagation();
     });
+  });
+}
+
+
+/**
+ * Removes(s) class names.
+ * @param selectors2remove The selector of the element where to remove from.
+ * @param removeClassNames The class name(s) to remove.
+ * @param ancestor The ancestor to use.
+ */
+export const removeClass = (selectors2remove: string | string[], removeClassNames: string | string[], ancestor: Document | Element = document): void => {
+  toArray(selectors2remove).forEach(selector2toggle => {
+    const toggleElement = ancestor.querySelector(selector2toggle);
+    if (toggleElement) {
+      toArray(removeClassNames).forEach(
+        toggleClassName => toggleElement?.classList.remove(toggleClassName)
+      );
+    }
+  });
+}
+
+/**
+ * Adds class names(s).
+ * @param selectors2add The selector of the element where to add to.
+ * @param addClassNames The class names(s) to add.
+ * @param ancestor The ancestor to use.
+ */
+export const addClass = (selectors2add: string | string[], addClassNames: string | string[], ancestor: Document | Element = document): void => {
+  toArray(selectors2add).forEach(selector2toggle => {
+    const toggleElement = ancestor.querySelector(selector2toggle);
+    if (toggleElement) {
+      toArray(addClassNames).forEach(
+        toggleClassName => toggleElement?.classList.add(toggleClassName)
+      );
+    }
   });
 }
 

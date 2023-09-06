@@ -1,5 +1,4 @@
-import {Button} from "./base";
-import {ButtonOptions} from "./base/Button";
+import {Button, ButtonOptions} from "./base";
 
 /**
  * A default button with a "share" icon
@@ -16,7 +15,7 @@ export class Share extends Button {
   public constructor(options?: ButtonOptions) {
     const opts = options || {};
 
-    super({ unicode: Share.DEFAULT_UNICODE, tooltip: Share.DEFAULT_TOOLTIP_TEXT, tooltipAsTextElement: true, ...opts });
+    super({ iconClassName: 'bgis-icon-share', tooltip: Share.DEFAULT_TOOLTIP_TEXT, ...opts });
 
   }
 

@@ -1,17 +1,19 @@
-@import "~/styles/scss/globals";
+@use 'sass:color';
+@import "~/src/bgis/variables";
 
 .bgis-map .bgis-footer {
   display: none;
-  @media only screen and (min-width: $desktop-min-width) {
-    @include flex(row);
+  @media only screen and (min-width: $desktop-view-width) {
+    @apply inline-flex flex-row;
     bottom: 0;
     height: $map-footer-height;
     position: absolute;
     right: 5px;
+    max-width: calc(100% - ($overview-image-width-calc) - 11px);
 
     div {
-      @include box-shadow();
-      background-color: transparentize($primary-color, 0.4);
+      @apply shadow-lg;
+      background-color: color.adjust($primary-color, $alpha: -0.1);
       border-radius: 5px 5px 0 0;
       font-size: 12px;
       margin: 0 2px;

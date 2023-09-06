@@ -1,0 +1,47 @@
+%menu {
+@apply relative overflow-hidden inline-flex flex-grow-0 flex-shrink flex-col my-smgs mx-smgs rounded shadow-lg;
+}
+
+%menu-open {
+    @extend %menu;
+        @apply flex-grow   basis-0  ;
+}
+
+
+%menu-header {
+  
+    @apply inline-flex flex-row bg-primary shadow-xl gap-2gs pt-gs px-2gs pb-gs z-10 justify-center items-center;
+}
+
+
+
+%menu-header-closed {
+    @extend %menu-header !optional;
+    @apply rounded;
+}
+
+
+%menu-header-open {
+    @extend %menu-header   !optional;
+    @apply rounded-t rounded-b-none;
+}
+
+%menu-body {
+    @apply inline-flex bg-secondary z-10 ;
+}
+
+%menu-body-base {
+    @extend %menu-body;
+    @apply rounded-b py-smgs pl-2gs pr-gs    ;
+}
+
+%menu-body-open {
+    @extend %menu-body-base;
+    @apply flex-col  flex-initial h-full overflow-y-auto     ;
+
+}
+
+
+%menu-body-closed {
+    @apply hidden;
+}

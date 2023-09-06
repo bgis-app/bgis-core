@@ -78,32 +78,34 @@ const internalBase64EncodedPngOfMap = (map: Map, keepExtent: boolean, width?: nu
   return new Promise((resolve, reject) => {
 
     if (map != null && map.getSize() && map.getView()) {
+      const size = map.getSize();
+      if(size) {
+        width = width || size[0];
+        height = height || size[1];
 
-      width = width || map.getSize()![0];
-      height = height || map.getSize()![1];
+        const printWidth = width;
+        const printHeight = height;
 
-      const printWidth = width;
-      const printHeight = height;
+        const originalSize = map.getSize();
+        const originalExtent = map.getView().calculateExtent();
 
-      const originalSize = map.getSize()!;
-      const originalExtent = map.getView().calculateExtent();
+        map.once('rendercomplete', () => {
 
-      map.once('rendercomplete', () => {
+          const base64EncPromise = internalDocumentOlCanvasToBase64EncPng(printWidth, printHeight);
 
-        const base64EncPromise = internalDocumentOlCanvasToBase64EncPng(printWidth, printHeight);
+          map.setSize(originalSize);
+          map.getView().fit(originalExtent, {size: originalSize});
 
-        map.setSize(originalSize);
-        map.getView().fit(originalExtent, {size: originalSize});
+          resolve(base64EncPromise);
 
-        resolve(base64EncPromise);
+        });
 
-      });
+        map.setSize([printWidth, printHeight]);
 
-      map.setSize([printWidth, printHeight]);
-
-      if (!keepExtent) {
-        // don't use variable originalExtent here
-        map.getView().fit(map.getView().calculateExtent(originalSize), {size: [printWidth, printHeight]});
+        if (!keepExtent) {
+          // don't use variable originalExtent here
+          map.getView().fit(map.getView().calculateExtent(originalSize), {size: [printWidth, printHeight]});
+        }
       }
 
     } else {

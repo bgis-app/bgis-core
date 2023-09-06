@@ -24,11 +24,11 @@
     "allowSyntheticDefaultImports": true
   },
   "typedocOptions": {
-    "entryPoints": [ "./src" ],
+    "entryPoints": [ "./src/index.ts" ],
     "out": "build/site/api",
     "name": "bgis API Documentation",
+    "excludeExternals": true,
     "exclude": [
-      "**/index.ts",
       "**/bgis/util",
       "**/bgis/ol/interaction",
       "**/indexClient.ts",

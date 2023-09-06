@@ -1,5 +1,5 @@
 export {Footer} from "./Footer";
-export {BottomRight} from "./BottomRight";
+export {BottomRight, type BottomRightOptions, type BottomRightOnSignature} from "./BottomRight";
 export {TopRight} from "./TopRight";
-export {Container} from "./Container";
+export {Container, type ContainerOptions} from "./Container";
 

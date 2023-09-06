@@ -13,8 +13,9 @@ const dirDestination = path.resolve(__dirname, '../build/dev');
 
 module.exports = (env) => {
 
-  console.log('The environment variables');
-  console.log(env);
+
+
+  console.log('The environment variables', env);
 
   let bgisVariants;
   let templatePages = [];
@@ -51,10 +52,13 @@ module.exports = (env) => {
 
   let entries = {};
   bgisVariants.forEach(item => entries[item.chunk] = item.entry);
-  console.log('The entries for the multientry project');
+  console.log('The entries for the multi entry project');
   console.log(entries);
 
   return {
+    stats: {
+      errorDetails: true,
+    },
     mode: 'development',
     entry: entries, // multiple entry points
     devtool: 'inline-source-map',
@@ -67,13 +71,9 @@ module.exports = (env) => {
       publicPath: '/',
     },
     devServer: {
-      contentBase: dirDestination,
-      writeToDisk: true,
       historyApiFallback: {
         disableDotRule: true,
       },
-      clientLogLevel: 'trace',
-      publicPath: '/',
     },
     resolve: {
       extensions: ['.ts', '.tsx', '.js'],
@@ -103,33 +103,23 @@ module.exports = (env) => {
             loader: MiniCssExtractPlugin.loader,
           }, {
             loader: 'css-loader',
-          }, {
-            loader: 'sass-loader',
+            options: {
+              modules: 'icss'
+            }
           }, {
             loader: 'postcss-loader',
-          }],
+          }, {
+            loader: 'sass-loader',
+          } ],
         },
         {
           test: /\.(png|jp(e*)g|svg)$/,
           include: [dirSource, devSource],
-          use: [{
-            loader: 'url-loader',
-            options: {
-              limit: 8000, // Convert images < 8kb to base64 strings
-              name: 'TODO/[hash]-[name].[ext]',
-            },
-          }],
+          type: 'asset/inline'
         },
         {
-          test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/, // For Font Awesome
-          use: [{
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'fonts/',    // where the fonts will go
-              // publicPath: './'       // override the default path
-            },
-          }],
+          test: /.(png|ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/, // For Font Awesome
+          type: 'asset/resource'
         }
       ],
     },

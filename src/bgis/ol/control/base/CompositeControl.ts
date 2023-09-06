@@ -1,5 +1,5 @@
 import Control, {Options} from 'ol/control/Control';
-import PluggableMap from "ol/PluggableMap";
+import {Map} from "ol";
 
 /**
  * Abstract base class for Controls with child controls
@@ -49,12 +49,12 @@ export abstract class CompositeControl extends Control {
   }
 
   /**
-   * The overriden setMap method
+   * The overridden setMap method
    *
    * Here we set the map for all child controls
    * @param map the current map
    */
-  setMap(map: PluggableMap): void {
+  public setMap(map: Map): void {
     super.setMap(map);
     if(map) {
       this.childControls.forEach(control => {
@@ -69,5 +69,20 @@ export abstract class CompositeControl extends Control {
    */
   public getChildControls(): Control[] {
     return this.childControls;
+  }
+
+  /**
+   * A setter for the child controls
+   * @param childControls
+   */
+  public setChildControls(childControls: Control[]): void {
+    this.childControls = childControls;
+  }
+
+  /**
+   * A getter for the element
+   */
+  public getElement(): HTMLElement {
+    return this.element;
   }
 }

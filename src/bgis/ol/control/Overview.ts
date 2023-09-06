@@ -1,20 +1,20 @@
-import {MapEvent, PluggableMap} from "ol";
+import {Map, MapEvent} from "ol";
 import Control, {Options} from 'ol/control/Control';
 import {Coordinate} from "ol/coordinate";
 import {boundingExtent, Extent} from "ol/extent";
-import {OnReturn} from "ol/Observable";
 import {ObjectOnSignature} from "ol/Object";
 import BaseEvent from "ol/events/Event";
+import {EventsKey} from "ol/events";
 
 /**
- * The overview options
+ * The overview options for the {@link Overview} control
  */
 export interface OverviewOptions extends Options {
   preventDefault?: boolean
 }
 
 /**
- * An event class to handle mouse events
+ * An event class to handle mouse events of the {@link Overview} control
  */
 export class OverviewMapEvent extends BaseEvent {
   originalEvent: MouseEvent;
@@ -25,9 +25,9 @@ export class OverviewMapEvent extends BaseEvent {
 }
 
 /**
- * The extended signature for the on method
+ * The extended signature for the on method of the {@link Overview} control
  */
-export type OverviewOnSignature<Return> = ((type: "click" | "click"[], listener: (event: OverviewMapEvent) => any) => Return) & ObjectOnSignature<Return>;
+export type OverviewOnSignature<Return> = ((type: "click" | "click"[], listener: (event: OverviewMapEvent) => unknown) => Return) & ObjectOnSignature<Return>;
 
 /**
  * Displays an overview map of Austria and a crosshair marker for the current
@@ -92,7 +92,7 @@ export class Overview extends Control {
   /**
    * @override
    */
-  public on!: OverviewOnSignature<OnReturn>;
+  public on!: OverviewOnSignature<EventsKey>;
 
   /**
    *
@@ -147,7 +147,7 @@ export class Overview extends Control {
    *
    * @param map
    */
-  public setMap(map: PluggableMap): void {
+  public setMap(map: Map): void {
     super.setMap(map);
     if (map) {
       // if(this.svgElement) {

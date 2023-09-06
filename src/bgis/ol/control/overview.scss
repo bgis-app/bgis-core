@@ -1,6 +1,6 @@
 @use "sass:math";
 
-@import "~/styles/scss/globals";
+@import "~/src/bgis/variables";
 
 $overview-image-width: 380;
 $overview-image-height: 216;
@@ -8,15 +8,15 @@ $overview-image-height: 216;
 .bgis-map {
 
   .bgis-overview-image {
-     display:none;
+    display: none;
 
-    @media only screen and (min-width: $desktop-min-width) {
+    @media only screen and (min-width: $desktop-view-width) {
       left: 4px;
       display: inline-flex;
       flex-direction: row;
       bottom: 4px;
       position: absolute;
-      width: calc(40px + 10vw);
+      width: $overview-image-width-calc;
       height: calc(#{math.div(40 * $overview-image-height, $overview-image-width)}px + #{ math.div(10 * $overview-image-height, $overview-image-width) }vw);
 
       figure {
@@ -29,4 +29,3 @@ $overview-image-height: 216;
   }
 
 }
-

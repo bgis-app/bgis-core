@@ -1,0 +1,70 @@
+.bgis-hz {
+    @apply inline-flex flex-row w-full space-x-2;
+}
+
+.bgis-vt {
+    @apply inline-flex flex-col h-full;
+}
+
+.bgis-gap {
+    @apply gap-2;
+}
+
+.bgis-basemap-icon {
+    clip-path: circle(32px at center);
+    @apply shadow-md hover:shadow-lg;
+}
+
+.bgis-txt {
+    @apply inline-flex flex-col flex-grow;
+}
+
+.bgis-grow {
+    @apply flex-grow;
+}
+
+.bgis-end {
+    @apply items-end
+}
+
+.bgis-center {
+    @apply items-center
+}
+
+ul.bgis-list-dense  {
+    @apply list-none;
+      & > li {
+       @apply px-0 place-items-center py-smgs;
+      & > ul {
+        @apply pl-gs;
+      }
+    }
+}
+
+.bgis-scroll {
+    @apply overflow-y-auto overflow-x-hidden;
+    scrollbar-width: thin;
+}
+
+.bgis-divide {
+    @apply divide-text divide-y;
+}
+
+.bgis-hover {
+    @apply hover:bg-primary-dark;
+}
+
+.bgis-border-bottom {
+    @apply border-text-lighter border-b-0.5;
+}
+
+button.bgis-basemap-button {
+    @apply inline-flex flex-grow-0 flex-col  items-center w-6rem;
+    line-height: 1.2; 
+ 
+}
+
+button.bgis-quicklink-button {
+    @apply inline-flex flex-grow-0 flex-col   items-center;
+ 
+}

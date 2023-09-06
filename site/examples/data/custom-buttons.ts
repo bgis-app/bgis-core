@@ -2,19 +2,18 @@ import '../../../src/indexCore.scss';
 import TileLayer from "ol/layer/Tile";
 import View from "ol/View";
 import Map from "ol/Map";
-import {Attribution, BasemapSource, BottomRight, Footer, MousePosition, ScaleLine} from "../../../src";
+import {Attribution, BasemapSource, BottomRight, Button, Footer, MousePosition, ScaleLine} from "../../../src";
 import {getCenter} from "ol/extent";
-import {Button, ButtonOptions} from "../../../src/bgis/ol/control/base/Button";
 
 const outputTextarea = document.getElementById("textarea-output") as HTMLTextAreaElement;
 
 /**
- * CustomButton1
+ * Custom button 1
  */
 class CustomButton1 extends Button {
 
-  constructor(options: ButtonOptions) {
-    super(options);
+  constructor() {
+    super({ unicode: 0xe945, tooltip: 'CustomButton1 Tooltip', tooltipAsTextElement: true });
   }
 
   handleEvent(): boolean {
@@ -23,24 +22,13 @@ class CustomButton1 extends Button {
   }
 }
 
-/**
- * CustomButton2
- */
-class CustomButton2 extends Button {
+const customButton1Ctrl = new CustomButton1();
 
-  constructor() {
-    super({ unicode: 0xe945, tooltip: 'CustomButton2 Tooltip', tooltipAsTextElement: true });
-  }
-
-  handleEvent(): boolean {
-    outputTextarea.value = 'CustomButton2 clicked\n' + outputTextarea.value;
-    return true;
-  }
-}
-
-const customButton1Ctrl = new CustomButton1({ iconClassName: 'bgis-icon-tornado', tooltip: 'CustomButton1 Tooltip'});
-
-const customButton2Ctrl = new CustomButton2();
+// custom button 2
+const customButton2Ctrl = new Button({ iconClassName: 'bgis-icon-tornado', tooltip: 'CustomButton2 Tooltip'});
+customButton2Ctrl.on('click', () => {
+  outputTextarea.value = 'CustomButton2 clicked\n' + outputTextarea.value;
+});
 
 new Map({
   target: 'bgis-map',

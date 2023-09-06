@@ -1,30 +1,31 @@
 import XYZSource from 'ol/source/XYZ.js';
+import {AttributionLike} from "ol/source/Source";
 
 /**
- *
+ * Mapped type for the VARIANTS constant map
  */
-export interface Variants {
+export type Variants = {
   [variant: string]: string
 }
 
 /**
  * Available Basemap variants
- * @private
  */
 export const VARIANTS: Variants = {
-  geolandbasemap: 'https://maps{1-4}.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png',
-  bmapgrau: 'https://maps{1-4}.wien.gv.at/basemap/bmapgrau/normal/google3857/{z}/{y}/{x}.png',
-  bmaporthofoto30cm: 'https://maps{1-4}.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857/{z}/{y}/{x}.jpeg',
-  bmapgelaende: 'https://maps{1-4}.wien.gv.at/basemap/bmapgelaende/grau/google3857/{z}/{y}/{x}.jpeg',
-  bmapoberflaeche: 'https://maps{1-4}.wien.gv.at/basemap/bmapoberflaeche/grau/google3857/{z}/{y}/{x}.jpeg',
-  bmapoverlay: 'https://maps{1-4}.wien.gv.at/basemap/bmapoverlay/normal/google3857/{z}/{y}/{x}.png',
+  geolandbasemap: 'https://mapsneu.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png',
+  bmapgrau: 'https://mapsneu.wien.gv.at/basemap/bmapgrau/normal/google3857/{z}/{y}/{x}.png',
+  bmaporthofoto30cm: 'https://mapsneu.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857/{z}/{y}/{x}.jpeg',
+  bmapgelaende: 'https://mapsneu.wien.gv.at/basemap/bmapgelaende/grau/google3857/{z}/{y}/{x}.jpeg',
+  bmapoberflaeche: 'https://mapsneu.wien.gv.at/basemap/bmapoberflaeche/grau/google3857/{z}/{y}/{x}.jpeg',
+  bmapoverlay: 'https://mapsneu.wien.gv.at/basemap/bmapoverlay/normal/google3857/{z}/{y}/{x}.png',
 };
 
 /**
- *
+ * Options for the {@linkcode BasemapSource} source
  */
 export interface BasemapSourceOptions {
   variant?: string;
+  attributions?: AttributionLike;
 }
 
 /**
@@ -34,13 +35,13 @@ export class BasemapSource extends XYZSource {
 
   /**
    * @param {Object} [options] Options
-   * @param {keyof variants} [options.variant="geolandbasemap"] Basemap variant
+   * @param {keyof VARIANTS} [options.variant="geolandbasemap"] Basemap variant
    */
   constructor(options?: BasemapSourceOptions) {
     const variant = options?.variant || 'geolandbasemap';
     super({
       url: VARIANTS[variant],
-      attributions: 'Grundkarte: <a href="https://basemap.at/">basemap.at</a>',
+      attributions: options?.attributions ?? 'Grundkarte: <a href="https://basemap.at/">basemap.at</a>',
       crossOrigin: "Anonymous"
     });
   }

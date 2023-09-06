@@ -31,7 +31,8 @@ describe('bgis.ol.control.Overview', () => {
 
   it('does call use default click handler with preventDefault=false', () => {
     // @ts-ignore
-    const onHandlerSpy = jest.spyOn(Overview.prototype, 'onOverviewImageClick');
+    const MockedOverview = Overview as jest.Mock<Overview>;
+    const onHandlerSpy = jest.spyOn(MockedOverview.prototype, 'onOverviewImageClick');
     const instance = new Overview({preventDefault: false});
     instance.getOverviewContainerElement().click();
     expect(onHandlerSpy).toHaveBeenCalled();
@@ -40,7 +41,8 @@ describe('bgis.ol.control.Overview', () => {
 
   it('does call use default click handler with preventDefault=true', () => {
     // @ts-ignore
-    const onHandlerSpy = jest.spyOn(Overview.prototype, 'onOverviewImageClick');
+    const MockedOverview = Overview as jest.Mock<Overview>;
+    const onHandlerSpy = jest.spyOn(MockedOverview.prototype, 'onOverviewImageClick');
     const instance = new Overview({preventDefault: true});
     instance.getOverviewContainerElement().click();
     expect(onHandlerSpy).toHaveBeenCalledTimes(0);

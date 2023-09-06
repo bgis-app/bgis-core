@@ -1,33 +1,10 @@
-@import "~/styles/scss/globals";
+@import "~/src/bgis/variables";
 
 .bgis-map .bgis-top-right {
-  @include flex(column);
-  position: absolute;
-  left: $grid-size;
-  right: unset;
-  top: unset;
-  bottom: $grid-size;
-  @media only screen and (min-width: $desktop-min-width) {
-    .bgis-header.hide ~ .bgis-body & {
-      top: $small-button-height + $grid-size;
-    }
-    top: $grid-size;
-    bottom: unset;
-    left: unset;
-    right: $grid-size + $small-grid-size;
-  }
+  @apply inline-flex flex-col absolute left-gs right-unset top-unset bottom-gs;
+  @apply md:top-gs md:bottom-unset md:left-unset md:right-2gs;
 }
-
-.bgis .bgis-map .bgis-top-right {
-  @media only screen and (min-width: $desktop-min-width) {
-    bottom: unset;
-    left: unset;
-    right: 2 * $grid-size;
-  }
-}
-
-.bgis.showheader .bgis-map .bgis-top-right {
-  @media only screen and (min-width: $desktop-min-width) {
-    top: $grid-size;
-  }
+ 
+.bgis.hide-header .bgis-top-right {
+  @apply md:top-9smgs ;
 }

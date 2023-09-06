@@ -1,5 +1,4 @@
-import {Button} from "./base";
-import {ButtonOptions} from "./base/Button";
+import {Button, ButtonOptions} from "./base";
 
 /**
  * A default button with a "print" icon
@@ -13,7 +12,7 @@ export class Print extends Button {
   public constructor(options?: ButtonOptions) {
     const opts = options || {};
 
-    super({unicode: 0xe912, tooltip: 'Ansicht drucken', tooltipAsTextElement: true, ...opts});
+    super({iconClassName: 'bgis-icon-print', tooltip: 'Ansicht drucken', ...opts});
 
   }
 

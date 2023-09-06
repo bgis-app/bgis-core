@@ -19,8 +19,8 @@ export class MousePosition extends OlMousePosition {
     const opts = options ? options : {};
 
     opts.projection = opts.projection ? opts.projection : 'EPSG:4326';
-    opts.coordinateFormat = opts.coordinateFormat ? opts.coordinateFormat : (coordinate: Coordinate | undefined) => coordinate ? format(coordinate, '{x}°N/{y}°E', 4) : '';
-    opts.undefinedHTML = opts.undefinedHTML ? opts.undefinedHTML : '&nbsp;-&nbsp;°N/&nbsp;-&nbsp;°E';
+    opts.coordinateFormat = opts.coordinateFormat ? opts.coordinateFormat : (coordinate: Coordinate | undefined) => coordinate ? format(coordinate, '{y}°N/{x}°E', 5) : '';
+    opts.placeholder = opts.placeholder ? opts.placeholder : '&nbsp;-&nbsp;°N/&nbsp;-&nbsp;°E';
     opts.className = opts.className ? opts.className : 'ol-control ol-mouse-position bgis-mouseposition';
 
     super(opts);

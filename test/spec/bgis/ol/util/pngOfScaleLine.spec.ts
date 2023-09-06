@@ -1,12 +1,12 @@
-import Map from 'ol/Map';
 import 'jest-canvas-mock';
 import {getPngOfScaleLine} from "../../../../../src/bgis/ol/util/pngOfScaleLine";
 import {ScaleLine} from "../../../../../src";
-import {PluggableMap, View} from "ol";
+import {Map, View} from "ol";
+import {disableCoordinateWarning} from "ol/proj";
 
 describe("Png of Scaleline", () => {
 
-  let map: PluggableMap | null;
+  let map: Map | null;
   let target: string | HTMLElement | null;
   let scaleline: ScaleLine;
 
@@ -18,6 +18,11 @@ describe("Png of Scaleline", () => {
     target.style.width = '100px';
     target.style.height = '100px';
     document.body.appendChild(target);
+
+    // explicitly disable OpenLayer View warning with default projection (EPSG:3857) and small coordinates (<90/180)
+    // (OpenLayer implicitly disables warning only with projection option set)
+    disableCoordinateWarning();
+
     map = new Map({
       target: target,
       controls: [scaleline],

@@ -1,0 +1,42 @@
+@import '../variables';
+
+.bgis {
+  @apply relative inline-flex flex-col w-full h-full overflow-hidden;
+
+  font-family:$font-family; // Die laut Styleguide AT zu verwendende Schrift
+  font-size: var(--bgis-font-size);
+
+
+  @apply text-base text-text;
+
+  a {
+    @apply text-link no-underline  visited:no-underline hover:no-underline hover:text-text-dark;
+  }
+
+  :focus {
+    @apply border;
+  }
+
+
+
+
+    /* firefox */
+    scrollbar-width: thin;
+    scrollbar-color: $link-color transparent;
+
+  /* width */
+  ::-webkit-scrollbar {
+    @apply w-3gs h-3gs;// ml-gs;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+     @apply bg-secondary;// bg-clip-padding rounded-lg;
+  }
+
+  ::-webkit-scrollbar-thumb {
+     @apply bg-link  border-gs border-secondary  rounded-xl border-solid   hover:bg-link-dark; //bg-clip-padding
+     min-height: 3rem;
+  }
+
+}

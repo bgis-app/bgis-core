@@ -1,7 +1,7 @@
 import Control, {Options} from 'ol/control/Control';
 
 /**
- * The options for the {@linkcode Copyright} control
+ * The options for the {@link Copyright} control
  */
 export interface CopyrightOptions extends Options {
   /** The displayed text **/
@@ -10,7 +10,7 @@ export interface CopyrightOptions extends Options {
 
 /**
  * A simple control to display some copyright information.
- * Define the text via {@linkcode CopyrightOptions}, otherwise
+ * Define the text via {@link CopyrightOptions}, otherwise
  * a default text is shown. You can also use HTML.
  */
 export class Copyright extends Control {
@@ -23,7 +23,7 @@ export class Copyright extends Control {
     const opts = options ? options : { target: undefined, label: undefined };
 
     const element = document.createElement('div');
-    element.innerHTML = opts.label ? opts.label : '&copy; by bgis Team';
+    element.innerHTML = opts.label ? opts.label : '&copy; BMLRT';
 
     super({
       element: element,

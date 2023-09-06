@@ -25,7 +25,7 @@ describe('bgis.ol.interaction.UiInteraction', () => {
       document.body.appendChild(listviewSplitter);
 
       const detailSplitter = document.createElement('div');
-      detailSplitter.className = 'bgis-detail-splitter';
+      detailSplitter.className = 'bgis-details-splitter';
       document.body.appendChild(detailSplitter);
 
       const map = setupStaticImageExample();

@@ -11,7 +11,7 @@ describe('bgis.ol.control.MousePosition', () => {
 
   describe('constructor', () => {
     it('can be constructed with options', () => {
-      const instance = new MousePosition({ projection: 'XXX', coordinateFormat: () => '', className: 'XXX', undefinedHTML: '<nothing>' });
+      const instance = new MousePosition({ projection: 'XXX', coordinateFormat: () => '', className: 'XXX', placeholder: '<nothing>' });
       expect(instance).toBeInstanceOf(OlMousePosition);
     });
   });

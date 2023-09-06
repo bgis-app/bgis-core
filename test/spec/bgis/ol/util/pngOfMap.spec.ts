@@ -1,14 +1,13 @@
-import Map from 'ol/Map';
 import {getFixedZoomPngOfMap, getVarZoomPngOfMap} from '../../../../../src/bgis/ol/util/pngOfMap';
 import 'jest-canvas-mock';
-import {PluggableMap} from "ol";
+import {Map} from "ol";
 import {Size} from "ol/size";
 import {Extent} from "ol/extent";
 import {setupStaticImageExample, tearDownStaticImageExample} from "../../../../helpers";
 
 describe("Png of Map", () => {
 
-  let map: PluggableMap | null;
+  let map: Map | null;
 
   let originalSize: Size | undefined;
   let originalResolution: number | undefined;

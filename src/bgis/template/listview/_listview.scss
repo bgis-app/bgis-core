@@ -1,0 +1,22 @@
+.bgis-listview, .bgis-listview-splitter  {
+    @apply hidden;
+}
+
+.bgis-body.show-listview .bgis-listview {
+   @apply h-full z-20 absolute w-full top-0 left-0  inline-flex flex-col bg-secondary md:relative  md:w-listviewwidth;
+}
+
+.bgis-body.show-listview .bgis-listview-splitter {
+    @apply md:z-20 md:inline-flex md:flex-initial  md:bg-secondary md:border-l-2 md:border-text-lighter md:w-4 md:h-full md:items-center md:hover:bg-text-lighter md:hover:rounded-lg md:leading-4 md:text-base; // only displayed in desktop view
+    width:var(--bgis-list-view-splitter-width);
+}
+
+
+.bgis-listview-header {
+    @apply inline-flex flex-row gap-2 px-2gs pt-gs pb-gs;
+  }
+
+.bgis-listview-body {
+    @apply inline-flex flex-col grow h-full overflow-y-auto overflow-x-hidden pl-2gs pr-gs pt-gs pb-gs;
+  }
+

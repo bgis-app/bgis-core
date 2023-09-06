@@ -1,0 +1,19 @@
+.bgis-modal {
+  @apply absolute top-0 right-0 left-0 z-50 w-full h-full bg-text-light;
+}
+
+.bgis-modal-panel {
+  @apply absolute  top-10 left-10 right-10 bottom-10 bg-background rounded-lg shadow-lg inline-flex flex-col;
+}
+
+.bgis-modal-header {
+  @apply inline-flex justify-between items-start p-4 rounded-t border-b grow-0;
+}
+
+.bgis-modal-body {
+  @apply inline-flex flex-grow justify-between items-start p-4 rounded-t border-b overflow-hidden; //dark:border-gray-600   
+}
+
+.bgis-modal-footer {
+  @apply inline-flex flex-row items-center p-6 space-x-2 rounded-b border-t grow-0 gap-4  justify-end; // border-gray-200 dark:border-gray-600
+}

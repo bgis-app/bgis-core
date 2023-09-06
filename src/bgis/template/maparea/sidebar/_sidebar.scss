@@ -1,0 +1,12 @@
+.bgis-sidebar {
+    @apply relative inline-flex flex-col h-full w-full md:w-desktopmenuwidth;
+   
+}
+
+.bgis-map-area.hide-sidebar .bgis-sidebar  {
+    @apply hidden;
+}
+
+.bgis-map-area.show-toolbar:not(.hide-sidebar) .bgis-sidebar {
+    @apply hidden md:inline-flex;
+}

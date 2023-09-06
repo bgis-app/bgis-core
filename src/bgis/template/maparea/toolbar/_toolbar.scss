@@ -1,0 +1,55 @@
+@use "sass:map";
+
+.bgis-map-area .bgis-toolbar-area {
+    @apply hidden md:invisible md:flex-grow md:inline-flex h-fit-content;
+}
+
+.bgis-map-area.show-toolbar .bgis-toolbar-area  {
+    @apply visible inline-flex flex-grow justify-end;
+}
+
+.bgis-toolbar {
+    display: none;
+}
+
+.bgis-map-area.show-toolbar .bgis-toolbar {
+    @extend %menu;
+    @apply w-full mx-10 md:max-w-maxtoolbarwidth;    
+}
+
+.bgis-toolbar .bgis-toolbar-header {
+    @extend %menu-header-closed;
+    @apply place-items-center;
+}
+
+.bgis-toolbar.open .bgis-toolbar-header {
+    @extend %menu-header-open;
+}
+
+
+
+.bgis-toolbar  .bgis-toolbar-body {
+    @apply hidden;
+
+}
+
+.bgis-toolbar  .bgis-toggle-toolbar-body   {
+    &:before {content: map.get($icon-map,"chevron-down");}
+}
+
+.bgis-toolbar.open .bgis-toolbar-body {
+    @extend %menu-body-open;
+    height: unset;
+}
+
+
+
+.bgis-toolbar.open .bgis-toggle-toolbar-body {
+    &:before {content:  map.get($icon-map,"chevron-up");}
+}
+
+
+
+
+
+

@@ -1,0 +1,54 @@
+.bgis-menus {
+    @apply relative overflow-hidden inline-flex flex-col grow-0 shrink basis-content bg-none;
+}
+
+.bgis-map-area .bgis-menus {
+  @apply shrink basis-content bg-primary-dark shadow-lg z-10;
+}
+
+.bgis-map-area.show-search-filter .bgis-menus {
+    @apply grow-100 shrink basis-content;
+}
+
+.bgis-map-area.show-search-details .bgis-menus,
+.bgis-map-area.show-map-details .bgis-menus {
+    @apply grow-0 shrink basis-content bg-primary-dark shadow-lg z-10;
+}
+
+.bgis-map-area.show-legend .bgis-menus {
+    @apply grow-100 shrink basis-content;
+}
+
+.bgis-map-area.show-map-details.show-legend .bgis-menus {
+    @apply grow shrink basis-content bg-primary-dark shadow-lg z-10;
+}
+
+
+.bgis-map-area.show-search-filter.show-legend .bgis-menus,
+.bgis-map-area.hide-details.show-search-filter .bgis-menus,
+.bgis-map-area.hide-details.show-legend .bgis-menus  {
+    @apply grow-100 shrink basis-content;
+ }
+
+
+
+.bgis-map-area.show-map-details.show-search-details .bgis-menus {
+    @apply grow-0 shrink basis-content bg-primary-dark shadow-lg z-10;
+}
+
+.bgis-map-area.show-search-details.show-legend .bgis-menus {
+    @apply grow shrink basis-content bg-primary-dark shadow-lg z-10;
+}
+
+
+.bgis-map-area.show-map-details.show-search-filter .bgis-menus {
+    @apply grow shrink basis-content bg-primary-dark shadow-lg z-10;
+}
+
+.bgis-map-area.show-search-details.show-search-filter .bgis-menus {
+    @apply grow shrink basis-content bg-primary-dark shadow-lg z-10;
+}
+
+.bgis-map-area.hide-details.show-search-filter.show-legend .bgis-menus {
+    @apply grow-100 shrink basis-content;
+ }

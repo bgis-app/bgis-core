@@ -1,5 +1,4 @@
-import {Button} from "./base";
-import {ButtonOptions} from "./base/Button";
+import {Button, ButtonOptions} from "./base";
 
 /**
  * A default button with a "tools" icon
@@ -13,7 +12,7 @@ export class Tools extends Button {
   public constructor(options?: ButtonOptions) {
     const opts = options || {};
 
-    super({ unicode: 0xe93b, tooltip: 'Toolbox einblenden', tooltipAsTextElement: true, ...opts });
+    super({ iconClassName: 'bgis-icon-tools', tooltip: 'Toolbox einblenden', ...opts });
   }
 
 }

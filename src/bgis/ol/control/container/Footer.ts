@@ -2,7 +2,7 @@ import Control, {Options} from 'ol/control/Control';
 import {Container} from "./Container";
 
 /**
- * A simple footer {@linkcode Container}
+ * A simple footer {@link Container}
  */
 export class Footer extends Container {
 

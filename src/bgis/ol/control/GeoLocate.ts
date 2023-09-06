@@ -1,21 +1,19 @@
 import Geolocation, {Options as OlGeoLocationOptions} from 'ol/Geolocation';
-import {Button} from "./base";
+import {Button, ButtonOnSignature, ButtonOptions} from "./base";
 import BaseEvent from "ol/events/Event";
 import Event from "ol/events/Event";
 import EventType from "ol/events/EventType";
-import {ButtonOnSignature, ButtonOptions} from "./base/Button";
 import {fromLonLat} from "ol/proj";
 import {Coordinate} from "ol/coordinate";
-import {OnReturn} from "ol/Observable";
+import {EventsKey} from "ol/events";
 
 /**
- * The extended signature for the on method
+ * The extended signature for the on method of the {@link GeoLocate} button
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type GeolocateOnSignature<Return> = ((type: "location_retrieved" | "location_retrieved"[], listener: (event: LocationRetrievedEvent) => any) => Return) & ButtonOnSignature<Return>;
+export type GeolocateOnSignature<Return> = ((type: "location_retrieved" | "location_retrieved"[], listener: (event: LocationRetrievedEvent) => unknown) => Return) & ButtonOnSignature<Return>;
 
 /**
- * The location retrieved event which is dispatched when we retrieve a position via the {@linkcode GeoLocate} button
+ * The location retrieved event which is dispatched when we retrieve a position via the {@link GeoLocate} button
  *
  * @TODO extend to retrieve more information from the Openlayers Geolocate object
  */
@@ -26,7 +24,7 @@ export class LocationRetrievedEvent extends Event {
 
   /**
    *
-   * @param type The event type. Usually a {@linkcode LocationRetrievedEventType}
+   * @param type The event type
    * @param position Your current position
    */
   constructor(type: string, position: Coordinate) {
@@ -38,7 +36,7 @@ export class LocationRetrievedEvent extends Event {
 
 
 /**
- * A {@linkCode Button} to retrieve your current position
+ * A {@link Button} to retrieve your current position
  *
  * This class uses the OpenLayers Geolocation object to fetch the current position.
  * When we retrieve the current position, a LocationRetrievedEvent is fired
@@ -52,7 +50,7 @@ export class GeoLocate extends Button {
   /**
    * @override
    */
-  public on!: GeolocateOnSignature<OnReturn>;
+  public on!: GeolocateOnSignature<EventsKey>;
 
   /**
    *
@@ -78,12 +76,13 @@ export class GeoLocate extends Button {
       if(this.geoLocation && this.getMap()?.getView()?.getProjection()) {
         this.geoLocation.once('change', () => {
           this.geoLocation.setTracking(false);
-          this.getMap().getView().animate({
+          this.getMap()?.getView().animate({
             center: fromLonLat(this.geoLocation.getPosition() as number[]),
             duration: 300,
           });
-          if(this.geoLocation.getPosition()) {
-            this.dispatchEvent(new LocationRetrievedEvent("location_retrieved", this.geoLocation.getPosition()!));
+          const position = this.geoLocation.getPosition();
+          if(position) {
+            this.dispatchEvent(new LocationRetrievedEvent("location_retrieved", position));
           }
         });
         this.geoLocation.setTracking(true);

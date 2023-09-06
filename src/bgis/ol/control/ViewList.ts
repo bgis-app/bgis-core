@@ -14,7 +14,7 @@ export class ViewList extends Button {
   public constructor(options?: ButtonOptions) {
     const opts = options || {};
 
-    super({ unicode:0xe937, tooltip: 'Liste anzeigen', ...opts });
+    super({ iconClassName:'bgis-icon-list', tooltip: 'Liste anzeigen', ...opts });
 
   }
 

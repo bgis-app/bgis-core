@@ -1,0 +1,32 @@
+.bgis-details, .bgis-map-area.hide-details  .bgis-details {
+  @apply invisible z-10 bg-secondary overflow-hidden inline-flex flex-col h-full flex-grow  shrink min-h-15gs   basis-0 shadow-lg ;
+}
+
+.bgis-map-area.show-map-details:not(.hide-details) .bgis-details, .bgis-map-area.show-search-details:not(.hide-details) .bgis-details {
+  @apply visible;
+  @apply absolute h-third z-20 bottom-0 left-0 right-0  max-h-full min-h-8gs  ;
+  @apply md:relative md:h-full max-h-maxsearchheightmobile md:max-h-full;
+}
+
+/* only shown in mobile version */
+.bgis-details-splitter {
+  @apply md:hidden inline-flex flex-row text-center border-t-1 border-text-lighter rounded-md w-full touch-none;
+  border-radius: 0;
+  button {
+    line-height: 1rem;
+  }
+}
+
+.bgis-sidebar .bgis-map-details-body , .bgis-sidebar .bgis-search-details-body  {
+  @apply hidden;
+}
+
+.bgis-map-area.show-map-details:not(.show-search-details) .bgis-map-details-body ,.bgis-map-area.show-search-details .bgis-search-details-body {
+  @apply relative bg-secondary inline-flex flex-col  z-10  h-full overflow-y-auto overflow-x-hidden pl-2gs pr-gs pt-2 pb-12 mr-3smgs;
+}
+
+
+
+.bgis-hide-detail {
+  @apply hidden md:z-20 md:inline-block md:content-end md:absolute md:bg-link md:border-2 md:text-secondary md:rounded-md md:bottom-2 md:left-22_5% md:right-22_5% md:w-55% md:justify-items-center md:py-1  md:shadow-lg md:hover:shadow-xl md:hover:font-bold md:hover:border-link-light md:hover:border-2;
+}

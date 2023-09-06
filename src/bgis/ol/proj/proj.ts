@@ -21,7 +21,7 @@ export const addProjection = (epsgCode: string, wktProjection: string, extent?: 
   proj4.defs(epsgCode, wktProjection);
   register(proj4);
   if (extent) {
-    getProjection(epsgCode).setExtent(extent)
+    getProjection(epsgCode)?.setExtent(extent)
   }
 }
 

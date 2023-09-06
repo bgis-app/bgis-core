@@ -1,18 +1,18 @@
-import {Collection, PluggableMap, View} from "ol";
+import {Collection, Map, View} from "ol";
 import {Extent, getCenter} from "ol/extent";
 import Projection from "ol/proj/Projection";
-import Map from "ol/Map";
 import ImageLayer from "ol/layer/Image";
 import {ImageStatic} from "ol/source";
 import {Control} from "ol/control";
 
-let globalMap: PluggableMap | null;
+let globalMap: Map | null;
 let globalTarget: string | HTMLElement | null;
 
 /**
- *
+ * Create a map with a static image layer
+ * and attach it to the dom with a size of 100x100px
  */
-export const setupStaticImageExample = (controls: Collection<Control> | Control[] | undefined = []): PluggableMap => {
+export const setupStaticImageExample = (controls: Collection<Control> | Control[] | undefined = []): Map => {
 
   const extent = [0, 0, 1024, 968] as Extent;
   const projection = new Projection({
@@ -32,7 +32,8 @@ export const setupStaticImageExample = (controls: Collection<Control> | Control[
       new ImageLayer({
         source: new ImageStatic({
           attributions: '© <a href="http://xkcd.com/license.html">xkcd</a>',
-          url: 'https://imgs.xkcd.com/comics/online_communities.png',
+          // @ts-ignore
+          url: `http://localhost:${SERVERPORT}/static-image`, // 'https://imgs.xkcd.com/comics/online_communities.png',
           projection: projection,
           imageExtent: extent,
         }),
@@ -51,27 +52,44 @@ export const setupStaticImageExample = (controls: Collection<Control> | Control[
 };
 
 /**
- *
+ * Dispose and remove the global map object from DOM
  */
 export const tearDownStaticImageExample = (): void => {
   globalMap?.dispose();
   document.body.removeChild<HTMLElement>(<HTMLElement>globalTarget);
   globalMap = null;
   globalTarget = null;
+
 }
 
 /**
- * A helper MouseEvent class because with jsdom the default MouseEvent does not support clientX and clientYs
+ * Sets the `document.documentElement.clientWidth` to given width
+ * and dispatches the window resize event
+ * @param width
  */
-export class FakeMouseEvent extends UIEvent {
+export const emulateWindowsResizeEvent = (width: number): void => {
+  Object.defineProperty(document.documentElement, 'clientWidth', {
+    writable: true,
+    configurable: true,
+    value: width,
+  });
+
+  window.dispatchEvent(new Event('resize'));
+}
+
+/**
+ * A helper PointerEvent class
+ * because with jsdom the default PointerEvent does not support clientX and clientYs
+ */
+export class FakePointerEvent extends UIEvent {
   clientX: number;
   clientY: number;
 
-  constructor(type: string, mouseEventInit: MouseEventInit) {
-    super(type,mouseEventInit);
+  constructor(type: string, pointerEventInit: PointerEventInit) {
+    super(type,pointerEventInit);
 
-    this.clientX = mouseEventInit.clientX || 0;
-    this.clientY = mouseEventInit.clientY || 0;
+    this.clientX = pointerEventInit.clientX || 0;
+    this.clientY = pointerEventInit.clientY || 0;
 
   }
 }

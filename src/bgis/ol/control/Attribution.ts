@@ -3,7 +3,7 @@ import {default as OlAttribution, Options} from 'ol/control/Attribution';
 /**
  * A simple wrapper control of the OpenLayer Attribution control
  *
- * It is collapsed and we add a bgis style class (*bgis-copyright*).
+ * It is collapsed, and we add a bgis style class (*bgis-copyright*).
  * Some visible changes are made via css.
  */
 export class Attribution extends OlAttribution {
@@ -15,7 +15,8 @@ export class Attribution extends OlAttribution {
   constructor(options?: Options) {
 
     const opts = options ? options : {
-      collapsed: false
+      collapsed: false,
+      collapsible: false
     };
     super(opts);
 

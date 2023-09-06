@@ -1,12 +1,12 @@
 import 'jest-canvas-mock';
 import {getPngOfOverview} from "../../../../../src/bgis/ol/util/pngOfOverview";
 import {Overview} from "../../../../../src";
-import {PluggableMap} from "ol";
+import {Map} from "ol";
 import {setupStaticImageExample, tearDownStaticImageExample} from "../../../../helpers";
 
 describe("Png of Overview", () => {
 
-  let map: PluggableMap;
+  let map: Map;
   let overview: Overview;
 
   beforeEach(() => {

@@ -1,10 +1,13 @@
 extends dev-site
 block content
     div
-        button(onclick='document.querySelector(".bgis-quicklink").classList.toggle("hide");return false;') toggle quicklink
-        button(onclick='document.querySelector(".bgis-sidebar").classList.toggle("show-detail");return false;') toggle details
-        button(onclick='document.querySelector(".bgis-detail").classList.toggle("show-search-results");return false;') toggle searchresults in details
-        button(onclick='document.querySelector(".bgis").classList.toggle("show-listview");return false;') toggle listview
-        button(onclick='document.querySelector(".bgis-menu").classList.toggle("show");return false;') toggle menu
+        button(onclick='document.querySelector(".bgis-map-area").classList.toggle("hide-quicklink");return false;') toggle Quicklink |
+        button(onclick='document.querySelector(".bgis-map-area").classList.toggle("show-map-details");return false;') toggle map details |
+        button(onclick='document.querySelector(".bgis-map-area").classList.toggle("show-search-details");return false;') toggle search details |
+
+        button(onclick='document.querySelector(".bgis-map-area").classList.toggle("show-toolbar");return false;') toggle Toolbar |
+        button(onclick='document.querySelector(".bgis-map-area").classList.toggle("show-basemap");return false;') toggle Basemap |
+        button(onclick='document.querySelector(".bgis-body").classList.toggle("show-app-menu");return false;') toggle App Menu |
+        button(onclick='document.querySelector(".bgis-body").classList.toggle("show-listview");return false;') toggle Listview
     div(style='height:80vh;width:95vw;position:relative;')
         include client

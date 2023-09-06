@@ -1,10 +1,13 @@
 import {expect, test} from '@jest/globals'
+import { nothing } from 'ol/pixel';
 import {
   createChildIfNotExist,
   removeChildIfExist,
   removeChildrenIfExist,
   toggleClass,
-  toggleClassOnClick
+  toggleClassOnClick,
+  addClass,
+  removeClass
 } from "../../../../src/bgis/util/dom";
 
 describe('bgis.util.dom', () => {
@@ -70,6 +73,15 @@ describe('bgis.util.dom', () => {
     expect(document.querySelector('.testClass')!.classList).toContain('black');
     (document.querySelector('.testButtonClass') as HTMLButtonElement).click();
     expect(document.querySelector('.testClass')!.classList).not.toContain('black');
+  });
+
+
+  test('addClass remove Class adds a css class', () => {
+    document.body.innerHTML += '<div class="testAddClass"></div>';
+    addClass('.testAddClass', 'added' );
+      expect(document.querySelector('.testAddClass')!.classList).toContain('added');
+      removeClass('.testAddClass', 'added' );
+      expect(document.querySelector('.testAddClass')!.classList).not.toContain('added');
   });
 
 });

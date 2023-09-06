@@ -1,0 +1,16 @@
+.bgis .bgis-show-header {
+    @apply hidden md:inline-flex md:invisible md:w-10 md:h-7;
+}
+.bgis.hide-header .bgis-show-header {
+    @apply md:z-10 md:visible md:items-start md:bg-primary-dark  md:rounded-b-lg md:shadow-lg md:items-center md:justify-items-center;
+
+    @screen md {
+      margin-right: calc(2.4 * var(--bgis-grid-size));
+    }
+
+    i {
+         padding-left: 0.317rem ;
+        transform: scaleX(2) ;
+    }
+}
+

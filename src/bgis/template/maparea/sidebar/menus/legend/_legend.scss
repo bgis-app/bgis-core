@@ -1,0 +1,77 @@
+.bgis-legend {
+    @extend %menu;
+}
+
+.bgis-map-area.show-legend .bgis-legend {
+    @extend %menu-open;
+}
+
+.bgis-legend-header {
+    @apply inline-flex flex-col ;
+}
+
+.bgis-legend-header-title {
+    @extend %menu-header-open ;
+}
+
+
+.bgis-legend-header-open {
+    @extend %menu-body-open;
+    @apply flex-row justify-between px-2gs py-smgs text-link   overflow-hidden   ;
+    a {
+        line-height: unset;
+    }
+}
+
+.bgis-legend .bgis-legend-header-tabs,
+.bgis-map-area.show-legend .bgis-legend-header-open,
+.bgis-legend .bgis-legend-layer-details,
+.bgis-legend-info-details {
+    @apply hidden;
+}
+
+.bgis-map-area.show-legend .bgis-legend-header-tabs {
+    @extend %menu-body;
+    @apply flex-row px-2gs py-0 text-link;
+}
+
+.bgis-map-area.show-legend .bgis-legend-layer-details {
+    @extend %menu-body-open;
+}
+
+.bgis-map-area.show-legend .bgis-legend.info .bgis-legend-layer-details  {
+    @apply hidden;
+}
+
+.bgis-map-area.show-legend .bgis-legend.info .bgis-legend-info-details {
+    @extend %menu-body-open;
+}
+
+// we need this to avoid a scrollbar because of line-height setting (?)
+.bgis-map-area.show-legend .bgis-legend.info .bgis-legend-info-details > .bgis-body1 {
+    @apply h-full;
+}
+
+%tabs-unselect {
+    @apply text-text-lighter font-normal border-text-lighter border-b-4 px-10 hover:border-text-dark hover:text-text-dark hover:font-bold;
+}
+
+%tabs-select {
+    @apply text-text font-bold border-text border-b-4 px-10  hover:border-text-dark hover:text-text-dark hover:font-bold;
+}
+
+.bgis-legend .bgis-layers-tab  {
+    @extend %tabs-select;
+}
+
+.bgis-legend .bgis-infos-tab {
+    @extend %tabs-unselect;
+}
+
+.bgis-legend.info .bgis-infos-tab {
+    @extend %tabs-select;
+}
+
+.bgis-legend.info .bgis-layers-tab {
+    @extend %tabs-unselect;
+}

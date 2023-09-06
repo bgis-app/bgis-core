@@ -54,19 +54,15 @@ printCtrl.on("click", () => {
 
   getFixedZoomPngOfMap(map).then(exportedPng => {
     downloadBase64EncFile(exportedPng, 'map-default-fixed-zoom.png');
-    console.log('default with fixed zoom =======');
     return getFixedZoomPngOfMap(map, 500, 300);
   }).then(exportedPng => {
     downloadBase64EncFile(exportedPng, 'map-500x300-fixed-zoom.png');
-    console.log('default with var zoom =======');
     return getVarZoomPngOfMap(map);
   }).then(exportedPng => {
     downloadBase64EncFile(exportedPng, 'map-default-var-zoom.png');
-    console.log('a4 landscape with 72dpi (map, 297mm, 210mm) - var zoom');
     return getVarZoomPngOfMap(map, 72 * 297 / 25.4, 72 * 210 / 25.4);
   }).then(exportedPng => {
     downloadBase64EncFile(exportedPng, 'map-a4-landscape-72-var-zoom.png');
-    console.log('a4 landscape with 300dpi (map, 297mm, 210mm) - var zoom');
     return getVarZoomPngOfMap(map, 300 * 297 / 25.4, 300 * 210 / 25.4);
   }).then(exportedPng => {
     downloadBase64EncFile(exportedPng, 'map-a4-landscape-300-var-zoom.png');

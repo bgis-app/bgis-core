@@ -2,7 +2,7 @@ import Control, {Options} from 'ol/control/Control';
 import {Container} from "./Container";
 
 /**
- * A simple {@linkcode Container} for controls on the upper right corner
+ * A simple {@link Container} for controls on the upper right corner
  */
 export class TopRight extends Container {
 

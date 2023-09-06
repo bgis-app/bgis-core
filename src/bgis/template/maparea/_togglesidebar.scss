@@ -1,0 +1,13 @@
+@use "sass:map";
+
+.bgis-toggle-sidebar {
+    @apply hidden md:visible md:inline-flex md:flex-col md:z-10 md:bg-primary-dark md:w-5smgs md:h-5gs md:rounded-r-lg md:shadow-lg md:justify-center;
+}
+
+.bgis-map-area .bgis-sidebar-icon-toggle {
+    &:before {content: map.get($icon-map, "chevron-left");}
+}
+
+.bgis-map-area.hide-sidebar .bgis-sidebar-icon-toggle {
+    &:before {content: map.get($icon-map, "chevron-right");}
+}

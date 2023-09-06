@@ -1,10 +1,12 @@
-.ol-attribution.ol-collapsed ul {
-  display: inline-block !important;
-}
+@import "~/src/bgis/variables";
 
 .ol-attribution.bgis-copyright {
   button {
-    display: none;
+    background-color: transparent;
+    outline: none;
+    font-size: 12px;
+    font-weight: normal;
+    color: black;
   }
 
   ul {
@@ -12,16 +14,20 @@
     margin: 0;
     padding: 0 5px;
     text-shadow: 0 0 2px #fff;
-    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   li {
     display: inline;
     list-style: none;
     font-size: $map-footer-font-size;
+    line-height: $map-footer-font-size;
 
     & > * {
       font-size: $map-footer-font-size;
+      line-height: $map-footer-font-size;
     }
   }
+
 }

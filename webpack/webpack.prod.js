@@ -1,8 +1,7 @@
 const path = require('path');
 
-const TerserPlugin = require("terser-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -26,7 +25,7 @@ module.exports = (env) => {
 
   let entries = {};
   bgisVariants.forEach(item => entries[item.chunk] = item.entry);
-  console.log("The entries for the multientry project");
+  console.log("The entries for the multi entry project");
   console.log(entries);
 
   return {
@@ -39,7 +38,7 @@ module.exports = (env) => {
       path: dirDestination,
       library: 'bgis-core',
       libraryTarget: 'umd',
-      publicPath: '/'
+      publicPath: ''
     },
     resolve: {
       extensions: ['.ts', '.tsx', '.js'],
@@ -55,6 +54,9 @@ module.exports = (env) => {
             },
             {
               loader: 'ts-loader',
+              options: {
+                configFile: 'tsconfig.prod.json'
+              }
             },
           ],
         },
@@ -65,81 +67,38 @@ module.exports = (env) => {
             loader: MiniCssExtractPlugin.loader,
           }, {
             loader: 'css-loader',
-          }, {
-            loader: 'sass-loader',
-          }, {
-            loader: 'postcss-loader',
+            options: {
+              modules: 'icss'
+            }
+          },
+          {
+            loader: 'postcss-loader'
+          },
+          {
+            loader: 'sass-loader'
           }],
         },
         {
-          test: /\.(png|jp(e*)g|svg)$/,
-          include: [dirSource],
-          use: [{
-            loader: 'url-loader',
-            options: {
-              limit: 8000, // Convert images < 8kb to base64 strings
-              name: 'TODO/[hash]-[name].[ext]'
-            }
-          }]
-        },
-        {
-          test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/, // For Font Awesome
-          use: [{
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'fonts/',    // where the fonts will go
-              publicPath: './fonts/'       // override the default path
-            }
-          }]
+          test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+          type: 'asset/resource',
+          generator: {
+            filename: './assets/fonts/[contenthash][ext]',
+          },
         },
         { test: /\.pug$/, loader: 'pug-loader' },
       ],
     },
     optimization: {
       runtimeChunk: false,
+      minimize: true,
       minimizer: [
-        new TerserPlugin({
-          parallel: true,
-          terserOptions: {
-            ecma: 6,
-            ie8: false,
-            toplevel: true,
-            module: true,
-            compress: {
-              dead_code: true,
-              warnings: false,
-              properties: true,
-              drop_debugger: true,
-              conditionals: true,
-              booleans: true,
-              loops: true,
-              unused: true,
-              toplevel: true,
-              if_return: true,
-              inline: true,
-              join_vars: true,
-              ecma: 6,
-              module: true
-            },
-            output: {
-              comments: false,
-              beautify: false,
-              indent_level: 2,
-              ecma: 6
-            },
-            mangle: {
-              module: true,
-              toplevel: true
-            }
-          }
-        }),
-        new OptimizeCSSAssetsPlugin({})
+        `...`,
+        new CssMinimizerWebpackPlugin()
       ]
     },
     plugins: [
       new CleanWebpackPlugin({
-        dangerouslyAllowCleanPatternsOutsideProject: true,
+        dangerouslyAllowCleanPatternsOutsideProject: false,
       }),
       new MiniCssExtractPlugin({
         filename: '[name].css'

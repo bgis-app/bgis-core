@@ -1,8 +1,14 @@
 import {MapEvent} from "ol";
 import {State} from "ol/View";
 import {Control} from "ol/control";
-import Units from "ol/proj/Units";
 import {getPointResolution} from "ol/proj";
+import {Units} from "ol/control/ScaleLine";
+import cssVariables from "../_index.scss";
+
+/**
+ * @type {string}
+ */
+const UNITS_PROP = 'units';
 
 /**
  * 25.4mm = 1 inch
@@ -121,7 +127,8 @@ export class ScaleLine extends Control {
 
     const center = viewState.center;
     const projection = viewState.projection;
-    const pointResolutionUnits = Units.METERS;
+    const units = this.getUnits();
+    const pointResolutionUnits = units == 'degrees' ? 'degrees' : 'm';
     let pointResolution = getPointResolution(
       projection,
       viewState.resolution,
@@ -132,7 +139,7 @@ export class ScaleLine extends Control {
     const minWidth = (this._minWidth * (this.dpi || DISPLAY_DPI)) / DISPLAY_DPI;
 
     const nominalCount = minWidth * pointResolution;
-    let suffix = '';
+    let suffix;
     if (nominalCount < 0.001) {
       suffix = 'μm';
       pointResolution *= 1000000;
@@ -191,6 +198,10 @@ export class ScaleLine extends Control {
 
   }
 
+  getUnits() {
+    return this.get(UNITS_PROP) as Units;
+  }
+
   /**
    * Get the generated svg element
    *
@@ -227,8 +238,8 @@ export class ScaleLine extends Control {
     text.setAttribute('y', String(12));
     text.setAttribute('text-anchor', 'middle');
     text.setAttribute('font-size', '1em');
-    text.setAttribute('style', 'font-size: 0.75rem; font-family: "Source Sans Pro", sans-serif');
-    text.setAttribute('font-family', '"Source Sans Pro", sans-serif');
+    text.setAttribute('style', 'font-size: 0.75rem; font-family: ' + cssVariables.fontFamily);
+    text.setAttribute('font-family', cssVariables.fontFamily);
     text.setAttribute('fill', 'black');
     svg.appendChild(text);
 

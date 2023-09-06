@@ -1,3 +1,18 @@
 {
-    "extends": "stylelint-config-recommended-scss"
+    "extends": "stylelint-config-recommended-scss",
+    "rules": {
+        "no-invalid-position-at-import-rule": null,
+        "scss/at-rule-no-unknown": [
+            true,
+            {
+                "ignoreAtRules": [
+                    "tailwind",
+                    "apply",
+                    "variants",
+                    "responsive",
+                    "screen"
+                ]
+            }
+        ]
+    }
 }

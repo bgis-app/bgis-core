@@ -1,5 +1,5 @@
-import {addAustrianProjections} from "./bgis/ol/proj";
 import './indexClient.scss';
+import {addAustrianProjections} from "./bgis/ol/proj";
 
 addAustrianProjections();
 

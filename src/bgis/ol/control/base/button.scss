@@ -1,13 +1,35 @@
 @use "sass:math";
-@import "~/styles/scss/globals";
+@import "~/src/bgis/variables";
+@import "~/src/bgis/mixins";
 
 .bgis-control.ol-control {
-  @include flex(column);
-  background: transparent;
-  padding: math.div($small-grid-size, 2);
+  @apply inline-flex flex-col p-[#{math.div($small-grid-size, 2)}] bg-transparent;
+  .bgis-icon-button {
+    background-color: $primary-color;
+    font-size: $small-icon-height;
+    @apply w-[40px] h-[40px] rounded-[20px] bg-primary shadow-sm text-text border-primary-dark border-2 hover:bg-primary-dark hover:shadow-lg hover:border-text hover:outline-none focus:outline-none;
+
+    .bgis-icon {
+      font-size: $small-icon-height;
+      height: $small-icon-height;
+      width: $small-icon-height;
+      line-height: 1rem;
+      @apply hover:text-text hover:font-normal;
+    }
+
+  }
+
+  .bgis-icon::after {
+    line-height: $button-height;
+  }
+
+  .bgis-control-button-text-container {
+    display: none;
+  }
 }
 
-.bgis-control .bgis-icon-button {
-  @extend %interactable-icon-button;
-  background-color: $primary-color;
+.bgis-bottom-right-vertical.show {
+  .bgis-control-button-text-container {
+    display: block;
+  }
 }

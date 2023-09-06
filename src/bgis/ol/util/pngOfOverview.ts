@@ -1,5 +1,5 @@
 import {dataUrlForSvgString, dataUrlToImage} from "../../util/base64";
-import {PluggableMap} from "ol";
+import {Map} from "ol";
 import {CompositeControl, Overview} from "../control";
 import {Control} from "ol/control";
 
@@ -9,7 +9,7 @@ import {Control} from "ol/control";
  * @param width
  * @param withBackground
  */
-export const getPngOfOverview = (map: PluggableMap, width?: string, withBackground = true): Promise<string> => {
+export const getPngOfOverview = (map: Map, width?: string, withBackground = true): Promise<string> => {
   const control = getOverviewControl(map.getControls().getArray());
   if (control instanceof Overview) {
 

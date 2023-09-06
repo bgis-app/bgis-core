@@ -5,11 +5,13 @@ block title
     | "Full Features" Integration
 block mapContainer
         div(class="mb-3")
-            button(class="btn btn-sm btn-outline-secondary mr-1" onclick='document.querySelector(".bgis-quicklink").classList.toggle("hide");return false;') toggle quicklink
-            button(class="btn btn-sm btn-outline-secondary mr-1" onclick='document.querySelector(".bgis-sidebar").classList.toggle("show-detail");return false;') toggle details
-            button(class="btn btn-sm btn-outline-secondary mr-1" onclick='document.querySelector(".bgis-detail").classList.toggle("show-search-results");return false;') toggle searchresults in details
-            button(class="btn btn-sm btn-outline-secondary mr-1" onclick='document.querySelector(".bgis").classList.toggle("show-listview");return false;') toggle listview
-            button(class="btn btn-sm btn-outline-secondary mr-1" onclick='document.querySelector(".bgis-menu").classList.toggle("show");return false;') toggle menu
+            button(class="btn btn-sm btn-outline-secondary mr-1" onclick='document.querySelector(".bgis-map-area").classList.toggle("hide-quicklink");return false;') toggle quicklink
+            button(class="btn btn-sm btn-outline-secondary mr-1" onclick='document.querySelector(".bgis-map-area").classList.toggle("show-map-details");return false;') toggle details
+            button(class="btn btn-sm btn-outline-secondary mr-1" onclick='document.querySelector(".bgis-map-area").classList.toggle("show-search-details");return false;') toggle search results in details
+            button(class="btn btn-sm btn-outline-secondary mr-1" onclick='document.querySelector(".bgis-map-area").classList.toggle("show-toolbar");return false;') toggle tool box
+            button(class="btn btn-sm btn-outline-secondary mr-1" onclick='document.querySelector(".bgis-map-area").classList.toggle("show-basemap");return false;') toggle Begleitkarten
+            button(class="btn btn-sm btn-outline-secondary mr-1" onclick='document.querySelector(".bgis-body").classList.toggle("show-app-menu");return false;') toggle app menu
+            button(class="btn btn-sm btn-outline-secondary mr-1" onclick='document.querySelector(".bgis-body").classList.toggle("show-listview");return false;') toggle list view
             p
             small(lang="en") These buttons partly simulate the click handlers of your framework (e.g. React, Angular)
         div(class="map-border renderedHtml" style="height:500px")

@@ -2,7 +2,7 @@ import Control, {Options} from "ol/control/Control";
 import {CompositeControl} from "../base";
 
 /**
- * Options for a {@linkcode Container}
+ * Options for a {@link Container}
  */
 export interface ContainerOptions extends Options {
   /** The style class of the container **/
@@ -15,7 +15,7 @@ export interface ContainerOptions extends Options {
  * A base class for a container of controls in the same HTML div element
  *
  * This control creates a parent div, and puts the child controls in it.
- * Target and map are set automatically - see {@linkcode CompositeControl}
+ * Target and map are set automatically - see {@link CompositeControl}
  */
 export class Container extends CompositeControl {
 

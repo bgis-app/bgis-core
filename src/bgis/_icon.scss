@@ -1,0 +1,113 @@
+@use "sass:map";
+@import 'mixins';
+
+$icon-font-family: Bund-GIS;
+$icon-font-path: './bgis/d/fonts' !default;
+
+%icon {
+  background-color: transparent;
+  border: none;
+  padding: unset;
+  //margin: unset;
+  color: $text-color;
+  direction: ltr;
+  display: inline-block;
+  font-family: "#{$icon-font-family}";
+  /* Preferred icon size */
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: normal;
+  line-height: 20px; // $icon-height;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+
+%small-icon-button {
+  @extend %icon;
+  @apply shadow-lg w-[#{3 * $grid-size}] h-[#{3 * $grid-size}] bg-primary text-text;
+  border-radius: $small-icon-border-radius;
+  font-size: $small-icon-height;
+  line-height: $small-icon-height;
+  font-weight: bold;
+
+}
+
+%small-interactable-icon-button {
+  @extend %small-icon-button;
+  @apply hover:bg-primary-dark hover:shadow-xl hover:outline-none focus:outline-none;
+}
+
+@include font($icon-font-family, $icon-font-path + '/Bund-GIS');
+
+
+i[class*="bgis-icon"] {
+  @apply font-[Bund-GIS] not-italic inline-flex;
+  line-height: 1.25rem;
+  font-size: 1.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+button > i {
+  @apply hover:text-text-dark hover:font-extrabold;
+}
+
+
+
+
+@each $name,
+$value in $icon-map {
+  .bgis-icon-#{$name}::before {
+    content: '#{$value}';
+  }
+}
+
+
+button.bgis-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.bgis-fab-icon {
+  @apply inline-flex flex-row text-icon w-[2.5rem] h-[2.5rem] rounded-[50%] p-[0.75rem] border-[1px] border-primary-dark bg-primary justify-center items-center shadow-md;
+}
+
+button.bgis-fab-icon {
+  @apply hover:bg-primary-dark hover:border-text-dark hover:shadow-lg hover:font-black;
+}
+
+
+
+.bgis-basemap-icon {
+  @apply inline-flex flex-row min-w-[4rem] w-[4rem] min-h-[4rem] h-[4rem] rounded-[50%] border-[1px] border-primary active:border-primary-dark justify-center items-center shadow-sm hover:shadow-lg;
+}
+
+
+.ol-control .bgis-icon-button {
+  @apply inline-flex flex-row text-icon w-[2.5rem] h-[2.5rem] rounded-[50%] p-[0.75rem] border-[1px] border-primary-dark bg-primary justify-center items-center shadow-md font-medium;
+
+}
+
+
+button.bgis-active {
+  img {
+    @apply border-text-dark shadow-lg;
+  }
+
+  .bgis-fab-icon {
+    @apply border-text-dark shadow-lg;
+  }
+
+  a {
+    @apply text-text-dark decoration-solid;
+  }
+}
+

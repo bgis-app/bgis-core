@@ -49,7 +49,7 @@ new Map({
   view: new View({
     center: getCenter([1060000, 5838030, 1913530, 6281290]), // fromLonLat([13.4, 47.7]),
     constrainOnlyCenter: true,
-    constrainResolution: false, // discrete zooomlevels
+    constrainResolution: false, // discrete zoom levels
     extent: [1060000, 5838030, 1913530, 6281290],
     maxZoom: 15,
     minZoom: 6,

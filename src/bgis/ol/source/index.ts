@@ -1,1 +1,1 @@
-export {BasemapSource} from './BasemapSource';
+export {BasemapSource, type Variants, type BasemapSourceOptions} from './BasemapSource';

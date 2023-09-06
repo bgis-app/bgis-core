@@ -1,0 +1,48 @@
+@mixin hide-on-desktop() {
+  @media only screen and (min-width: $desktop-view-width) {
+    display: none;
+  }
+}
+
+@mixin hide-on-mobile() {
+  @media only screen and (max-width: $desktop-view-width) {
+    display: none;
+  }
+}
+
+@mixin desktop-only() {
+  @media only screen and (min-width: $desktop-view-width) {
+    display: unset;
+  }
+
+  display: none;
+}
+
+
+@mixin bottom-right($bottom) {
+  position: absolute;
+  right: $grid-size;
+  @media only screen {
+    bottom: $bottom;
+  }
+}
+
+
+
+@mixin center-button() {
+  height: auto;
+}
+
+
+
+@mixin font($font-family, $font-file, $font-style: 'normal', $font-weight: 'normal') {
+  @font-face {
+    font-display: block;
+    font-family: '#{$font-family}';
+    font-style: #{$font-style};
+    font-weight: #{$font-weight};
+    src: url('#{$font-file}.woff2?hv5vh0') format('woff2'),
+    url('#{$font-file}.woff?hv5vh0') format('woff'),
+    url('#{$font-file}.ttf?hv5vh0') format('truetype');
+  }
+}

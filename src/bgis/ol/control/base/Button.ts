@@ -3,10 +3,10 @@ import {CompositeControl} from "./CompositeControl";
 import BaseEvent from "ol/events/Event";
 import Event from "ol/events/Event";
 import {ObjectOnSignature} from "ol/Object";
-import {OnReturn} from "ol/Observable";
+import {EventsKey} from "ol/events";
 
 /**
- * Options for {@linkcode Button}
+ * Options for {@link Button}
  */
 export interface ButtonOptions extends Options {
 
@@ -30,34 +30,34 @@ export interface ButtonOptions extends Options {
 }
 
 /**
- * The extended signature for the on method
+ * The extended signature for the on method of the {@link Button}
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type ButtonOnSignature<Return> = ((type: "click" | "click"[], listener: (event: Event) => any) => Return) & ObjectOnSignature<Return>;
+export type ButtonOnSignature<Return> = ((type: "click" | "click"[], listener: (event: Event) => unknown) => Return) & ObjectOnSignature<Return>;
 
 /**
- * **Abstract base class for buttons**
+ * **Base class for buttons**
  *
- * A button is an OpenLayer control with a default layout. You can change some style classes, tooltips etc
- * with the {@linkcode ButtonOptions}
+ * Use the Button class as base class or create a fully configurable instance directly.
  *
- * Some buttons extent from OpenLayer controls with its features, but most of them are just a shell for further implementations
+ * A button is an OpenLayer control with a default layout. You can change some style classes, tooltips etc.
+ * with the {@link ButtonOptions}
+ *
+ * Some buttons extend OpenLayer controls with its features, but most of them are just a shell for further implementations
  *
  * You can set the icon font of the button with the unicode number or the iconClassName option.
  *
- * @event click A Button dispatches the CLICK event so that you can listen to it with the *on* OpenLayer method
+ * A Button dispatches the CLICK event so that you can listen to it with the *on* OpenLayer method
  * Example:
  * ```typescript
  * const printCtrl = new Print({ preventDefault: true });
  * printCtrl.on(EventType.CLICK, this.handlePrint);
  * ```
- * Alternativly you can override the {@linkcode handleEvent} method
+ * Alternatively you can override the {@link handleEvent} method
  *
- * @remark As a button is also a CompositeControl it can have child controls. E.g. it's used with the {@linkcode ToggleButton}
+ * @remark As a button is also a CompositeControl it can have child controls. E.g. it's used with the {@link ToggleButton}
  *
  */
-export abstract class Button extends CompositeControl {
-
+export class Button extends CompositeControl {
   /** The HTML element of the button **/
   protected button: HTMLButtonElement;
 
@@ -70,7 +70,7 @@ export abstract class Button extends CompositeControl {
   /**
    * @override
    **/
-  public on!: ButtonOnSignature<OnReturn>;
+  public on!: ButtonOnSignature<EventsKey>;
 
   /**
    *
@@ -78,9 +78,9 @@ export abstract class Button extends CompositeControl {
    * @param childControls Optional child controls
    * @event click The event fired when the button is clicked
    */
-  protected constructor(options: ButtonOptions, childControls?: Control | Control[]) {
+  public constructor(options: ButtonOptions, childControls?: Control | Control[]) {
 
-    options.tooltipAsTextElement = options.tooltipAsTextElement ? options.tooltipAsTextElement : false;
+    options.tooltipAsTextElement = options.tooltipAsTextElement ?? true;
 
     options.unicode = options.unicode || null;
     options.iconClassName = options.iconClassName || null;
@@ -97,7 +97,7 @@ export abstract class Button extends CompositeControl {
     buttonElement.className = 'bgis-icon-button';
 
     if(options.unicode !== null) {
-      buttonElement.textContent = String.fromCodePoint(options.unicode);
+      buttonElement.appendChild(Button.getIconElementForUnicode(options.unicode));
     } else if (options.iconClassName !== null) {
       buttonElement.appendChild(Button.getIconElementForIconClassName(options.iconClassName));
     }
@@ -155,12 +155,13 @@ export abstract class Button extends CompositeControl {
 
   /**
    * A setter to change the unicode for the button font icon.
-   * Removes the icon tag for the button.
+   * Removes the icon tag for the button icon.
    * @param unicode
    */
   public setButtonUnicode(unicode: number): void {
+    this.getButton().textContent = '';
     this.getButton().innerHTML = '';
-    this.getButton().textContent = String.fromCodePoint(unicode);
+    this.getButton().appendChild(Button.getIconElementForUnicode(unicode));
   }
 
   /**
@@ -183,6 +184,19 @@ export abstract class Button extends CompositeControl {
   static getIconElementForIconClassName(iconClassName: string): HTMLElement {
     const iconElement = document.createElement('i');
     iconElement.className = 'bgis-icon ' + iconClassName;
+    return iconElement;
+  }
+
+  /**
+   * Get an icon element for the given unicode font
+   *
+   * @param unicode
+   * @protected
+   */
+  static getIconElementForUnicode(unicode: number): HTMLElement {
+    const iconElement = document.createElement('i');
+    iconElement.className = 'bgis-icon';
+    iconElement.textContent = String.fromCodePoint(unicode);
     return iconElement;
   }
 

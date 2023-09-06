@@ -1,13 +1,27 @@
-@import "~/styles/scss/globals";
-
+@import "~/src/bgis/variables";
+@import "~/src/bgis/mixins"; 
 /* zoom */
 
+%zoom-button {
+  //@extend %interactable-icon;
+  @apply shadow-lg;
+  @include desktop-only();
+  background-color: $primary-color;
+  width: 3 * $grid-size;
+  height: 3 * $grid-size;
+  display: none;
+  font-size: $small-icon-height;
+  line-height: $small-icon-height;
+  font-weight: bold;
+  border: unset;
+}
+
+
 .ol-control.zoom-container {
-  @include flex(column);
-  @include hide-on-mobile();
+  @apply hidden md:inline-flex md:flex-col;
 
   .ol-zoom-in {
-    @extend %zoom-button;
+    @extend  %small-interactable-icon-button;
     margin-bottom: 0px;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
@@ -15,7 +29,7 @@
   }
 
   .ol-zoom-out {
-    @extend %zoom-button;
+    @extend  %small-interactable-icon-button;
     margin-top: 0px;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
@@ -24,6 +38,6 @@
 
 .bgis-map .ol-control .zoom-in:hover,
 .bgis-map .ol-control .zoom-out:hover {
-  color: $text-color-dark;
+  color: var(--bgis-text-color-dark);
   font-weight: bolder;
 }

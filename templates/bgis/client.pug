@@ -2,21 +2,14 @@
 div(class = 'bgis')
 
     // header.pug
-    header(class='bgis-header')
-        nav
-            div(class='bgis-grow0')
-                span(class="bgis-headline5") bgis Client
-            each val in [1,2,3]
-                a(href="#") link #{val}
-            div(class='bgis-grow1')
-            div(class='bgis-grow-0')
-                span(class="bgis-headline5") Logo Right
-            div(class='bgis-hide-header bgis-grow0 bgis-icon')
-                i(class="bgis-icon bgis-icon-times")
-
-    // header-collapse.pug
-    div(class='collapsible bgis-icon bgis-show-header')
-        i(class="bgis-icon bgis-icon-chevron-down")
+    nav(class='bgis-header')
+        span(class="bgis-headline5") bgis Client
+        each val in [1,2,3]
+            a(  href="#") link #{val}
+        span(class='bgis-grow')
+        span(class="bgis-headline5") Logo Right
+        button(class='bgis-hide-header bgis-icon')
+                i(class="bgis-icon-times")
 
     // bgis.pug (2)
     main(class='bgis-body')
@@ -25,198 +18,300 @@ div(class = 'bgis')
         div(class='bgis-map-area')
 
             // sidebar.pug
-            aside(class="bgis-sidebar bgis-toggled-overlayable")
+            aside(class="bgis-sidebar")
 
-                // search.pug
-                section(class="bgis-search bgis-toggled-overlayable")
-                    header(class ='bgis-search-header')
-                        button(class="bgis-icon", aria-label="Einstellungen")
-                            i(class="bgis-icon bgis-icon-bars")
-                        label(class="bgis-sr-only", for="search") Durchsuchen...
-                        input(type="search", id="search", placeholder="durchsuchen ...", class="bgis-grow1 bgis-text")
-                        //label(class='bgis-toggle-icon')
-                        //    input(type="checkbox")
-                        //    span(class="bgis-icon" data-checked="\ue921" data-unchecked="\ue916")
-                        button(class="bgis-grow0 bgis-icon bgis-search-showfilter", aria-label="Filter anzeigen")
-                            i(class="bgis-icon bgis-icon-sliders")
-                        button(class="bgis-grow0 bgis-icon", aria-label="Spracheingabe")
-                            i(class="bgis-icon bgis-icon-microphone")
-                    div(id='bgis-search-filter' class="bgis-search-body")
-                        ul(class='bgis-list bgis-scrollbar')
-                            each val in [0,1,2,3,4,5,6,7,8,9]
+                section(class="bgis-menus")
+
+                    // search.pug
+                    section(class="bgis-search")
+                        header(class ='bgis-search-header')
+                            button(class="bgis-icon", aria-label="Einstellungen")
+                                i(class="bgis-icon bgis-icon-bars")
+                            input(type="search", id="search", placeholder="durchsuchen ...", class="bgis-grow bgis-text")
+                            button(class="bgis-grow0 bgis-icon bgis-search-showfilter", aria-label="Filter anzeigen")
+                                i(class="bgis-icon bgis-icon-sliders")
+                            button(class="bgis-grow0 bgis-icon", aria-label="Spracheingabe")
+                                i(class="bgis-icon bgis-icon-microphone")
+                        // Displays the search filter
+                        div(id='bgis-search-filter' class="bgis-search-body" )
+                            ul(class='bgis-list-dense bgis-scroll')
+                                each val in [0,1,2,3,4,5,6]
+                                    li(class='bgis-hz')
+                                        div(class='bgis-fab-icon') #{val}
+                                        span(class='bgis-txt')
+                                            span(class="bgis-subtitle1") Element #{val}
+                                            span(class="bgis-subtitle2") Informations about selected element #{val}
+                                        div(class='bgis-icon')
+                                            i(class="bgis-icon bgis-icon-pdf")
+                                each val in [7,8,9]
+                                    li(class='bgis-hz')
+                                        div(class='bgis-fab-icon') #{val}
+                                        span(class='bgis-txt')
+                                            span(class="bgis-subtitle1") Element #{val} Element #{val} Element #{val}
+                                            span(class="bgis-subtitle2") Informations about selected element #{val} Informations about selected element #{val}
+                                        div(class='bgis-icon')
+                                            i(class="bgis-icon bgis-icon-pdf")
+                        // Toggles the details view for search and map details
+                        div(class="bgis-show-details")
+                            button(class="bgis-icon")
+                                i(class="bgis-icon bgis-icon-chevron-down")
+                            span(class="bgis-caption bgis-grow" ) Details einblenden
+
+
+                    // legend.pug
+                    section(class="bgis-legend" )
+                        header(class="bgis-legend-header")
+                            span(class="bgis-legend-header-title")
+                                span(class="bgis-fab-icon")
+                                    i(class="bgis-icon bgis-icon-map")
+                                span(class="bgis-txt")
+                                    span(class="bgis-overline") Kartendetails
+                                    span(class="bgis-headline6") Karte XYZ
+                                span(class="bgis-icon")
+                                    i(class="bgis-icon bgis-icon-layer-group")
+                            div(class="bgis-legend-header-open" )
+                                a(class="bgis-caption bgis-grow" ) Legende &amp; Infos anzeigen
+                                button(class="bgis-showlegend bgis-icon", title="Zeige detaillierte Legendeninfos zur Karte an", aria-label="Zeige detaillierte Legendeninfos zur Karte an")
+                                    i(class="bgis-icon bgis-icon-chevron-down")
+                            div(class="bgis-legend-header-tabs")
+                                button(class="bgis-layers-tab bgis-caption", aria-label="Legende") Legende
+                                button(class="bgis-infos-tab bgis-caption", aria-label="Informationen") Infos
+                                span(class="bgis-grow") &nbsp;
+                                button(class="bgis-hidelegend bgis-icon", title="Detaillierte Legendeninfo ausblenden", aria-label="Detaillierte Legendeninformation ausblenden" )
+                                    i(class="bgis-icon bgis-icon-chevron-up")
+                        div(class="bgis-legend-layer-details")
+                            // legend-legend.pug
+                            ul(class='bgis-list-dense bgis-scroll')
                                 li(class='bgis-hz')
-                                    div(class='bgis-fab-icon') #{val}
-                                    span(class='bgis-txt')
-                                        span(class="bgis-subtitle1") Element #{val}
-                                        span(class="bgis-subtitle2") Informations about selected element #{val}
-                                    div(class='bgis-icon')
-                                        i(class="bgis-icon bgis-icon-pdf")
-
-                // legend.pug
-                section(class="bgis-legend bgis-toggled-overlayable" )
-                    header(class="bgis-legend-header")
-                        span(class="bgis-fab-icon")
-                            i(class="bgis-icon bgis-icon-map")
-                        span(class="bgis-txt")
-                            span(class="bgis-overline") Kartendetails
-                            span(class="bgis-headline6") Karte XYZ
-                        span(class="bgis-icon")
-                            i(class="bgis-icon bgis-icon-layer-group")
-                    div(class="bgis-legend-open")
-                        a(class="bgis-caption") Legende &amp; Infos anzeigen
-                        span(class="bgis-grow1") &nbsp;
-                        button(class="bgis-showlegend bgis-icon", title="Zeige detaillierte Legendeninfos zur Karte an", aria-label="Zeige detaillierte Legendeninfos zur Karte an")
-                            i(class="bgis-icon bgis-icon-chevron-down")
-                    div(class="bgis-legend-tabs")
-                        button(class="bgis-layers-tab bgis-caption", aria-label="Legende") Legende
-                        button(class="bgis-infos-tab bgis-caption", aria-label="Informationen") Infos
-                        span(class="bgis-grow1") &nbsp;
-                        button(class="bgis-hidelegend bgis-icon", title="Detaillierte Legendeninfo ausblenden", aria-label="Detaillierte Legendeninformation ausblenden")
-                            i(class="bgis-icon bgis-icon-chevron-up")
-                    div(class="bgis-legend-body bgis-legend-layers")
-
-                        // legend-legend.pug
-                        ul(class='bgis-list-dense bgis-scrollbar')
-                            li
-                                h3(class="bgis-overline") Variante 1 (statische Legende) 
-                            li 
-                                span(class="bgis-hz")
-                                    span(class="bgis-txt")
-                                        h4(class="bgis-subtitle1") Layer 1 Titel
-                                ul(class="bgis-list-dense")
-                                    li()
-                                        span(class="bgis-hz")
-                                            img(class="bgis-icon", src=require("../assets/fwmst.50b378b4.svg").default, alt="Beispiel Icon")
+                                    h3(class="bgis-overline") Variante 1 (statische Legende)
+                                li
+                                    h4(class="bgis-hz bgis-subtitle1") Layer 1 Titel
+                                    ul(class="bgis-list-dense")
+                                        li(class='bgis-hz')
+                                            img(class="bgis-icon", src=require("../assets/fwmst.50b378b4.svg"), alt="Beispiel Icon")
                                             span(class="bgis-txt bgis-body2") Legend Layer 1 Item 1
-                                    li()
-                                        span(class="bgis-hz")
-                                            img(class="bgis-icon", src=require("../assets/semst.4c2431e9.svg").default, alt="Beispiel Icon")
+                                        li(class='bgis-hz')
+                                            img(class="bgis-icon", src=require("../assets/semst.4c2431e9.svg"), alt="Beispiel Icon")
                                             span(class="bgis-txt bgis-body2") Legend Layer 1 Item 2
-                            li 
-                                span(class="bgis-hz")
-                                    span(class="bgis-txt")
-                                        h4(class="bgis-subtitle1") Layer 2 Titel
-                                ul(class="bgis-list-dense")
-                                    li()
-                                        span(class="bgis-hz")
-                                            img(class="bgis-icon", src=require("../assets/pgmst.14898e5e.svg").default, alt="Beispiel Icon")
+                                li
+                                    h4(class="bgis-hz bgis-subtitle1") Layer 2 Titel
+                                    ul(class="bgis-list-dense")
+                                        li(class='bgis-hz')
+                                            img(class="bgis-icon", src=require("../assets/pgmst.14898e5e.svg"), alt="Beispiel Icon")
                                             span(class="bgis-txt bgis-body2") Legend Layer 2 Item 1
-                            li 
-                                h3(class="bgis-overline") Variante 2 (dynamische Legende)
-                            li
-                                span(class="bgis-hz")
-                                    input(class="bgis-icon bgis-checkbox" type="checkbox" id="dynamicLayer1" value="valueDynamicLayer1" checked="")
-                                    img(class="bgis-icon", src=require("../assets/omst.af14d9ae.svg").default, alt="Beispiel Icon")
-                                    label(class="bgis-txt" for="dynamicLayer1" ) 
-                                        h4(class="bgis-subtitle1") Layer 1 Titel
-                                    i(class="bgis-icon bgis-icon-chevron-up")
-                                ul(class="bgis-list-dense")
-                                    li()
-                                        span(class="bgis-hz")
+                                li(class='bgis-hz')
+                                    h3(class="bgis-overline") Variante 2 (dynamische Legende)
+                                li
+                                    span(class="bgis-hz")
+                                        input(class="bgis-icon bgis-checkbox" type="checkbox" id="dynamicLayer1" value="valueDynamicLayer1" checked="")
+                                        img(class="bgis-icon", src=require("../assets/omst.af14d9ae.svg"), alt="Beispiel Icon")
+                                        label(class="bgis-txt" for="dynamicLayer1" )
+                                            h4(class="bgis-subtitle1") Layer 1 Titel
+                                        i(class="bgis-icon bgis-icon-chevron-up")
+                                    ul(class="bgis-list-dense")
+                                        li(class="bgis-hz")
                                             input(class="bgis-icon bgis-checkbox" type="checkbox" id="layer1item1" value="Legend Entry x1" checked="")
-                                            img(class="bgis-icon", src=require("../assets/fwmst.50b378b4.svg").default, alt="Beispiel Icon")
+                                            img(class="bgis-icon", src=require("../assets/fwmst.50b378b4.svg"), alt="Beispiel Icon")
                                             label(class="bgis-txt bgis-body2" for="layer1item2") Legend Layer 1 Item 1
-                                    li()
-                                        span(class="bgis-hz")
+                                        li(class="bgis-hz")
                                             input(class="bgis-icon bgis-checkbox" type="checkbox" id="layer1item2" value="layer1item2" checked="")
-                                            img(class="bgis-icon", src=require("../assets/semst.4c2431e9.svg").default, alt="Beispiel Icon")
+                                            img(class="bgis-icon", src=require("../assets/semst.4c2431e9.svg"), alt="Beispiel Icon")
                                             label(class="bgis-txt bgis-body2" for="layer1item2") Legend Layer 1 Item 2
-                            li
-                                span(class="bgis-hz")
-                                    input(class="bgis-icon bgis-checkbox" type="checkbox" id="dynamicLayer2" value="valueDynamicLayer2" checked="")
-                                    img(class="bgis-icon", src=require("../assets/gmst.ad200cf0.svg").default, alt="Beispiel Icon")
-                                    label(class="bgis-txt" for="dynamicLayer2" ) 
-                                        h4(class="bgis-subtitle1") Layer 2 Titel
-                                    i(class="bgis-icon bgis-icon-chevron-up")
-                                ul(class="bgis-list-dense")
-                                    li()
-                                        span(class="bgis-hz")
-                                            input(class="bgis-icon bgis-checkbox" type="checkbox" id="layer1item1" value="Legend Entry x1" checked="")
-                                            img(class="bgis-icon", src=require("../assets/pgmst.14898e5e.svg").default, alt="Beispiel Icon")
+                                li
+                                    span(class="bgis-hz")
+                                        input(class="bgis-icon bgis-checkbox" type="checkbox" id="dynamicLayer2" value="valueDynamicLayer2" checked="")
+                                        img(class="bgis-icon", src=require("../assets/gmst.ad200cf0.svg"), alt="Beispiel Icon")
+                                        label(class="bgis-txt" for="dynamicLayer2" )
+                                            h4(class="bgis-subtitle1") Layer 2 Titel
+                                        i(class="bgis-icon bgis-icon-chevron-up")
+                                    ul(class="bgis-list-dense")
+                                        li(class="bgis-hz")
+                                            input(class="bgis-icon bgis-checkbox" type="checkbox" id="layer1item3" value="Legend Entry x1" checked="")
+                                            img(class="bgis-icon", src=require("../assets/pgmst.14898e5e.svg"), alt="Beispiel Icon")
                                             label(class="bgis-txt bgis-body2" for="layer1item2") Legend Layer 2 Item 1
-                            li
-                                span(class="bgis-hz")
+                                li(class="bgis-hz")
                                     input(class="bgis-icon bgis-checkbox"  type="checkbox" id="dynamicLayer3" value="valueDynamicLayer3" checked="")
-                                    img(class="bgis-icon", src=require("../assets/gmst.ad200cf0.svg").default, alt="Beispiel Icon")
-                                    label(class="bgis-txt" for="dynamicLayer3") 
+                                    img(class="bgis-icon", src=require("../assets/gmst.ad200cf0.svg"), alt="Beispiel Icon")
+                                    label(class="bgis-txt" for="dynamicLayer3")
                                         h4(class="bgis-subtitle1") Layer 3 Titel
                                     i(class="bgis-icon bgis-icon-chevron-down")
 
-                    div(class="bgis-legend-body bgis-legend-infos")
+                        // Provides general information about the map
+                        div(class="bgis-legend-info-details")
+                            // legend-infos.pug
+                            span(class='bgis-body1 bgis-scroll')
+                                h3(class='bgis-headline6') Placeholder
+                                span(class='bgis-body1') Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                                span(class='bgis-body1') Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                                h3(class='bgis-headline6') Placeholder
+                                span(class='bgis-body1') Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
-                        // legend-infos.pug
-                        span(class='bgis-card bgis-body1 bgis-scrollbar') Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-
-                // quicklink.pug
-                section(class="bgis-quicklink bgis-toggled-overlayable")
-                    div(class="bgis-quicklink-header")
-                        button(class="bgis-icon bgis-quicklink-close", aria-label="Quicklinks ausblenden")
-                            i(class="bgis-icon bgis-icon-times-sm")
-                        // bgis-quicklink content goes here
-                    div(class="bgis-quicklink-body")
-
-                        // examples/quicklink.pug
-                        each val in [0,1,2]
-                            span(class='bgis-vt' style="align-items:center")
-                                button(class='bgis-fab-icon', aria-label="Quicklink #{val}") #{val}
-                                a(class='bgis-caption', aria-label="Quicklink #{val}") link to map#{val}
-                        //- span(class="bgis-grow1") &nbsp;
-                        span(class='bgis-vt' style="align-items:center")
-                            span(class='bgis-fab-icon' ) :
-                            a(class='bgis-caption', aria-label="Mehr Quicklinks") more
+                    // quicklink.pug
+                    section(class="bgis-quicklink")
+                        header(class="bgis-quicklink-header")
+                            button(class="bgis-icon bgis-quicklink-close")
+                                i(class="bgis-icon-times-sm")
+                        div(class="bgis-quicklink-body")
+                            // examples/quicklink.pug
+                            each val in [0,1,2]
+                                case val
+                                    when 0
+                                        button(class='bgis-quicklink-button bgis-active')
+                                            span(class='bgis-fab-icon', aria-label="Quicklink #{val}") #{val}
+                                            a(class='bgis-caption', aria-label="Quicklink #{val}") Link to map#{val}
+                                    when 1
+                                        button(class='bgis-quicklink-button' aria-pressed='false')
+                                            span(class='bgis-fab-icon', aria-label="Quicklink #{val}") #{val}
+                                            a(class='bgis-caption', aria-label="Quicklink #{val}") Link to map#{val} Link to map#{val}
+                                    default
+                                        button(class='bgis-quicklink-button' aria-pressed='false')
+                                            span(class='bgis-fab-icon', aria-label="Quicklink #{val}") #{val}
+                                            a(class='bgis-caption', aria-label="Quicklink #{val}") Link to map#{val}
+                            // In the case there are more Quicklinks
+                            p(class='bgis-grow')
+                            button(class='bgis-quicklink-button'  )
+                                span(class='bgis-fab-icon', aria-label="More")
+                                    i(class='bgis-icon-more-four')
+                                a(class='bgis-caption', aria-label="Mehr Quicklinks") Alle anzeigen
 
                 // detail.pug
-                div(class="bgis-detail bgis-toggled-overlayable")
-                    div(class="bgis-detail-splitter bgis-icon")
-                        i(class="bgis-icon bgis-icon-minus")
-                    div(class="bgis-detail-body")
-                        // bgis-detail content goes here
+                div(class="bgis-details")
+                    div(class="bgis-details-splitter bgis-hz")
+                        button(class="bgis-hover bgis-grow")
+                            i(class="bgis-icon bgis-icon-minus")
+                        button(class="bgis-hover")
+                            i(class="bgis-icon bgis-icon-times-sm")
 
-                        // examples/detail.pug
-                        div(class="bgis-card bgis-scrollbar")
-                            div(class="bgis-detail-content")
-                                span(class='bgis-hz')
-                                    span(class='bgis-txt')
-                                        span(class='bgis-subtitle1') XY details
-                                        span(class='bgis-subtitle2') more Details for xy
-                                img(class='bgis-hz bgis-media', alt="Einfaches Beispielbild", style="height:100px;", src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjY3OCIgdmVyc2lvbj0iMS4xIiB3aWR0aD0iMTE0OCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBzdHlsZT0ib3ZlcmZsb3c6IGhpZGRlbjsgcG9zaXRpb246IHJlbGF0aXZlOyI+PGRlc2M+Q3JlYXRlZCB3aXRoIFJhcGhhw6tsIDIuMC4xPC9kZXNjPjxkZWZzPjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTE0OCIgaGVpZ2h0PSI2NzgiIHI9IjAiIHJ4PSIwIiByeT0iMCIgZmlsbD0iI2YwZjBmMCIgc3Ryb2tlPSJub25lIiBzdHlsZT0iIj48L3JlY3Q+PGNpcmNsZSBjeD0iNzk1IiBjeT0iMzg2IiByPSI0NCIgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjY2NjY2NjIiBzdHlsZT0ib3BhY2l0eTogMC4yOyIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjIiPjwvY2lyY2xlPjxjaXJjbGUgY3g9Ijk0NCIgY3k9IjM3NSIgcj0iMTA1IiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiNjY2NjY2MiIHN0eWxlPSJvcGFjaXR5OiAwLjI7IiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuMiI+PC9jaXJjbGU+PC9zdmc+")
-                                span(class='bgis-hz bgis-body1') Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                                span(class='bgis-hz')
-                                    button(class='bgis-button', aria-label="Beispiel Button 1") button1
-                                    button(class='bgis-button', aria-label="Beispiel Button 2") button2
-                                    span(class='bgis-txt') &nbsp;
-                                    button(class='bgis-icon', aria-label="Beispiel Icon 1")
-                                        i(class="bgis-icon bgis-icon-share")
-                                    button(class='bgis-icon', aria-label="Beispiel Icon 2")
-                                        i(class="bgis-icon bgis-icon-share")
-                            div(class="bgis-search-results")
-                                ul(class='bgis-list-dense')
-                                    each val in [0,1,2,3,4,5,6,7,8,9]
-                                        li(class='bgis-hz')
-                                            button(class='bgis-icon', aria-label="Beispiel Listeneintrag #{val}")
-                                                i(class="bgis-icon bgis-icon-map-marker")
-                                            span(class='bgis-txt') Somwhere near 123, #{val}
 
-                // sidebar.pug (2)
-                div(class='collapsible bgis-icon bgis-hide-sidebar bgis-toggled-overlayable')
-                    i(class="bgis-icon bgis-icon-chevron-left-sm")
 
-            // sidebar-collapse.pug
-            div(class='collapsible bgis-icon bgis-show-sidebar bgis-toggled-overlayable ')
-                i(class="bgis-icon bgis-icon-chevron-right-sm")
+                    div(class="bgis-map-details-body  bgis-scroll ")
+                        span(class='bgis-hz')
+                            span(class='bgis-txt')
+                                span(class='bgis-subtitle1') XY details
+                                span(class='bgis-subtitle2') more Details for xy
+                        img(class='bgis-hz bgis-media', alt="Einfaches Beispielbild", style="height:100px;", src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjY3OCIgdmVyc2lvbj0iMS4xIiB3aWR0aD0iMTE0OCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBzdHlsZT0ib3ZlcmZsb3c6IGhpZGRlbjsgcG9zaXRpb246IHJlbGF0aXZlOyI+PGRlc2M+Q3JlYXRlZCB3aXRoIFJhcGhhw6tsIDIuMC4xPC9kZXNjPjxkZWZzPjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTE0OCIgaGVpZ2h0PSI2NzgiIHI9IjAiIHJ4PSIwIiByeT0iMCIgZmlsbD0iI2YwZjBmMCIgc3Ryb2tlPSJub25lIiBzdHlsZT0iIj48L3JlY3Q+PGNpcmNsZSBjeD0iNzk1IiBjeT0iMzg2IiByPSI0NCIgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjY2NjY2NjIiBzdHlsZT0ib3BhY2l0eTogMC4yOyIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjIiPjwvY2lyY2xlPjxjaXJjbGUgY3g9Ijk0NCIgY3k9IjM3NSIgcj0iMTA1IiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiNjY2NjY2MiIHN0eWxlPSJvcGFjaXR5OiAwLjI7IiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuMiI+PC9jaXJjbGU+PC9zdmc+")
+                        span(class='bgis-hz bgis-body1') Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                        span(class='bgis-hz')
+                            button(class='bgis-button', aria-label="Beispiel Button 1") button1
+                            button(class='bgis-button', aria-label="Beispiel Button 2") button2
+                            span(class='bgis-txt') &nbsp;
+                            button(class='bgis-icon', aria-label="Beispiel Icon 1")
+                                i(class="bgis-icon bgis-icon-share")
+                            button(class='bgis-icon', aria-label="Beispiel Icon 2")
+                                i(class="bgis-icon bgis-icon-share")
+                                |
+                    ul(class="bgis-search-details-body bgis-list-dense bgis-scroll")
+                        each val in [0,1,2,3,4,5]
+                            li(class='bgis-hz bgis-hover bgis-border-bottom')
+                                button(class='bgis-icon', aria-label="Beispiel Listeneintrag #{val}")
+                                    i(class="bgis-icon bgis-icon-map-marker")
+                                a(class='bgis-txt bgis-body1') Somwhere near 123, #{val}
+                        each val in [6,7,8,9]
+                            li(class='bgis-hz bgis-hover bgis-border-bottom')
+                                button(class='bgis-icon', aria-label="Beispiel Listeneintrag #{val}")
+                                    i(class="bgis-icon bgis-icon-map-marker")
+                                a(class='bgis-txt bgis-body1') Somwhere near 123, #{val}  Somwhere near 123, #{val}  Somwhere near 123, #{val}
+
+                    button(class="bgis-hide-detail") Ausblenden
+
+            // toggle sidebar.pug (2)
+            button(class='bgis-toggle-sidebar collapsible')
+                i(class="bgis-icon bgis-sidebar-icon-toggle")
+
 
             // map.pug
             div(class="bgis-map" id="bgis-map")
 
+            // toolbar
+            section(class="bgis-toolbar-area")
+                section(class="bgis-toolbar")
+                    header(class="bgis-toolbar-header")
+                        button(class="bgis-icon bgis-hide-toolbar")
+                            i(class="bgis-icon bgis-icon-times-sm")
+                        span(class="bgis-txt bgis-subtiltle2 bgis-grow") Toolbox
+                        button(class="bgis-icon")
+                            i(class="bgis-icon bgis-icon-undo")
+                        button(class="bgis-icon")
+                            i(class="bgis-icon bgis-icon-redo")
+                        button(class="bgis-icon bgis-toolbar-open")
+                            i(class="bgis-icon bgis-toggle-toolbar-body")
+                    div(class="bgis-toolbar-body")
+                        ul(class="bgis-list-dense bgis-scrollbar")
+                            li()
+                                span(class="bgis-hz")
+                                    i(class="bgis-icon bgis-icon-draw")
+                                    span(class="bgis-txt bgis-grow1") Zeichnen
+                                    i(class="bgis-icon bgis-icon-chevron-right-sm")
+                            li()
+                                span(class="bgis-hz")
+                                    i(class="bgis-icon bgis-icon-measure")
+                                    span(class="bgis-txt bgis-grow1") Messen
+                                    i(class="bgis-icon bgis-icon-chevron-right-sm")
+                            li()
+                                span(class="bgis-hz")
+                                    i(class="bgis-icon bgis-icon-import")
+                                    span(class="bgis-txt bgis-grow1") Import
+                                    i(class="bgis-icon bgis-icon-chevron-right-sm")
+                            li()
+                                span(class="bgis-hz")
+                                    i(class="bgis-icon bgis-icon-export")
+                                    span(class="bgis-txt bgis-grow1") Export
+                                    i(class="bgis-icon bgis-icon-chevron-right-sm")
+
+            // header-collapse.pug
+            button(class='collapsible bgis-icon bgis-show-header')
+                i(class="bgis-icon bgis-icon-chevron-down")
+
+
+
+            // basemap Begleitkarten
+            section(class="bgis-basemap")
+                span(class="bgis-basemap-header")
+                    button(id="bgis-basemap-close", aria-label="Listenansicht schließen", aria-hidden="true", class="bgis-basemap-close bgis-icon")
+                        i(class="bgis-icon bgis-icon-times-sm")
+                span(class="bgis-basemap-body")
+                    span(class="bgis-hz")
+                        button(class='bgis-basemap-button'  )
+                            img(class="bgis-basemap-icon", src=require("../assets/basemap_leer.png"), alt="Beispiel Icon")
+                            a(class='bgis-caption', aria-label="Quicklink #{val}") Something else 1
+                        button(class='bgis-basemap-button'  )
+                            img(class="bgis-basemap-icon", src=require("../assets/basemap_leer.png"), alt="Beispiel Icon")
+                            a(class='bgis-caption', aria-label="Quicklink #{val}") Something else 2
+
+                    span(class="bgis-hz")
+                        button(class='bgis-basemap-button')
+                            img(class="bgis-basemap-icon", src=require("../assets/basemap_dop.png"), alt="Beispiel Icon")
+                            a(class='bgis-caption', aria-label="Quicklink #{val}") Basemap DOP
+                        button(class='bgis-basemap-button')
+                            img(class="bgis-basemap-icon", src=require("../assets/basemap_farbe.png"), alt="Beispiel Icon")
+                            a(class='bgis-caption', aria-label="Quicklink #{val}") Basemap Farbe
+                        button(class='bgis-basemap-button')
+                            img(class="bgis-basemap-icon", src=require("../assets/basemap_gelaende.png"), alt="Beispiel Icon")
+                            a(class='bgis-caption', aria-label="Quicklink #{val}") Basemap Gelände
+                        button(class='bgis-basemap-button bgis-active')
+                            img(class="bgis-basemap-icon", src=require("../assets/basemap_grau.png"), alt="Beispiel Icon")
+                            a(class='bgis-caption', aria-label="Quicklink #{val}") Basemap Grau
+                        button(class='bgis-basemap-button')
+                            img(class="bgis-basemap-icon", src=require("../assets/basemap_leer.png"), alt="Beispiel Icon")
+                            a(class='bgis-caption', aria-label="Quicklink #{val}") Basemap Leer
+                        button(class='bgis-basemap-button')
+                            img(class="bgis-basemap-icon", src=require("../assets/basemap_oberflaeche.png"), alt="Beispiel Icon")
+                            a(class='bgis-caption', aria-label="Quicklink #{val}") Basemap Oberfläche
+
+
+
+
         // listview.pug
-        div(class="bgis-listview-splitter")
+        button(class="bgis-listview-splitter bgis-icon bgis-hover")
+            i(class="bgis-icon")
+
         div(class="bgis-listview")
-            header(class="bgis-listview-header")
-                button(id="bgis-listview-close", aria-label="Listenansicht schließen", aria-hidden="true", class="bgis-icon")
+            header(class="bgis-listview-header bgis-border-bottom")
+                button(id="bgis-listview-close", aria-label="Listenansicht schließen", aria-hidden="true", class="bgis-icon" )
                     i(class="bgis-icon bgis-icon-times")
                 button(aria-label="Listenansicht maximieren", aria-hidden="true", class="bgis-icon")
                     i(class="bgis-icon bgis-icon-expand")
-                span(class="bgis-grow1") &nbsp;
+                span(class="bgis-grow") &nbsp;
                 button(aria-label="Listenansicht schließen", aria-hidden="true", class="bgis-icon")
                     i(class="bgis-icon bgis-icon-sign-out")
                 button(aria-label="Listenansicht maximieren", aria-hidden="true", class="bgis-icon")
@@ -225,8 +320,8 @@ div(class = 'bgis')
             div(class="bgis-listview-body")
 
                 // examples/list.pug
-                ul(class="bgis-list bgis-vertical")
-                    each val in [1,2,3,4,5,6,7,8,9,10]
+                ul(class="bgis-list-dense bgis-scroll")
+                    each val in [1,2,3,4,5]
                         li(class="bgis-hz")
                             div(class='bgis-fab-icon') #{val}
                             span(class='bgis-txt')
@@ -234,14 +329,37 @@ div(class = 'bgis')
                                 span(class="bgis-subtitle2") More info about #{val}
                             div(class="bgis-icon")
                                 i(class="bgis-icon bgis-icon-chevron-down")
+                    each val in [6,7,8,9,10]
+                        li(class="bgis-hz")
+                            div(class='bgis-fab-icon') #{val}
+                            span(class='bgis-txt')
+                                span(class="bgis-subtitle1") Found #{val}
+                                span(class="bgis-subtitle2") More info about #{val} More info about #{val}  More info about #{val} More info about #{val} More info about #{val}
+                            div(class="bgis-icon")
+                                i(class="bgis-icon bgis-icon-chevron-down")
 
         // menu.pug
-        div(class="bgis-menu")
-            ul(class="bgis-list")
-                each val in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-                    li(class="bgis-horizontal")
-                        div(class='bgis-fab-icon') #{val}
-                        span(class='bgis-text')
-                            span(class="bgis-subtitle1") Navigate #{val}
-                            span(class="bgis-subtitle2") Some Navigation Details #{val}
+        div(class="bgis-app-menu")
+            header(class="bgis-app-menu-header")
+                button(id="bgis-listview-close2", aria-label="Listenansicht schließen", aria-hidden="true", class="bgis-icon" onclick="document.querySelector('.bgis-body').classList.toggle('show-app-menu');return false;" )
+                    i(class="bgis-icon bgis-icon-times")
+                span(class="bgis-txt bgis-grow")
+                    span(class="bgis-headline6") Bgis App Logo
+                    span(class="bgis-caption") Application Subtitle
+            section(class="bgis-app-menu-body")
+                ul(class="bgis-list-dense  ")
+                    each val in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                        li(class="bgis-hz")
+                            div(class='bgis-fab-icon') #{val}
+                            span(class='bgis-txt')
+                                span(class="bgis-subtitle1") Navigate #{val}
+                                span(class="bgis-subtitle2") Some Navigation Details #{val}
+                    each val in [11, 12, 13, 14, 15]
+                        li(class="bgis-hz")
+                            div(class='bgis-fab-icon') #{val}
+                            span(class='bgis-txt')
+                                span(class="bgis-subtitle1") Navigate #{val}
+                                span(class="bgis-subtitle2") Some Navigation Details #{val} Some Navigation Details #{val} Some Navigation Details #{val} Some Navigation Details #{val}
+                li(class="bgis-hz")
+                    span(class="bgis-caption bgis-grow1 bgis-hz-center") &copy; BMLRT, #{ new Date().getFullYear() }
 

@@ -1,0 +1,86 @@
+.bgis-search {
+    @extend %menu;
+}
+
+.bgis-map-area.show-search-filter .bgis-search {
+    @extend %menu-open !optional;
+}
+
+
+.bgis-map-area .bgis-search-header {
+    @extend %menu-header-closed !optional;
+}
+
+.bgis-map-area.show-search-filter .bgis-search-header,   .bgis-map-area.hide-details .bgis-search-header {
+    @extend %menu-header-open !optional;
+
+}
+
+.bgis-search-header input {
+    @apply bg-primary border-0 focus:outline-0 w-full min-w-0 border-0 bg-primary;
+
+
+  &::-webkit-search-cancel-button{
+    -webkit-appearance: none;
+    height: 1em;
+    width: 1em;
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPg0KICA8cGF0aCBkPSJNNzYzLjAxNyA2NzQuODVjNi42NTYgNi42NTYgNi42NTYgMTcuNDc2IDAgMjQuMTMycy0xNy40NzYgNi42NTYtMjQuMTMyIDBsLTIyNi44ODQtMjI2Ljg1LTIyNi44NSAyMjYuODVjLTYuNjU2IDYuNjU2LTE3LjQ3NiA2LjY1Ni0yNC4xMzIgMHMtNi42NTYtMTcuNDc2IDAtMjQuMTMybDIyNi44NS0yMjYuODUtMjI2Ljg1LTIyNi44ODRjLTYuNjU2LTYuNjU2LTYuNjU2LTE3LjQ3NiAwLTI0LjEzMiAzLjM0NS0zLjMxMSA3LjcxNC00Ljk4MyAxMi4wNDktNC45ODMgNC4zNjkgMCA4LjczOCAxLjYzOCAxMi4wODMgNC45ODNsMjI2Ljg1IDIyNi44NSAyMjYuODg0LTIyNi44NWMzLjMxMS0zLjMxMSA3LjY4LTQuOTgzIDEyLjA0OS00Ljk4M3M4LjczOCAxLjYzOCAxMi4wODMgNC45ODNjNi42NTYgNi42NTYgNi42NTYgMTcuNDc2IDAgMjQuMTMybC0yMjYuODUgMjI2Ljg4NCAyMjYuODUgMjI2Ljg1eiIvPg0KPC9zdmc+') no-repeat;
+    background-size: 120%;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &:focus::-webkit-search-cancel-button {
+    opacity: 1;
+    pointer-events: all;
+    cursor: pointer;
+  }
+
+  &:focus::-webkit-search-cancel-button:hover {
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPg0KICA8cGF0aCBmaWxsPSIjYWMzNzFiIiBzdHJva2U9IiNhYzM3MWIiIHN0cm9rZS13aWR0aD0iNDAiIGQ9Ik03NjMuMDE3IDY3NC44NWM2LjY1NiA2LjY1NiA2LjY1NiAxNy40NzYgMCAyNC4xMzJzLTE3LjQ3NiA2LjY1Ni0yNC4xMzIgMGwtMjI2Ljg4NC0yMjYuODUtMjI2Ljg1IDIyNi44NWMtNi42NTYgNi42NTYtMTcuNDc2IDYuNjU2LTI0LjEzMiAwcy02LjY1Ni0xNy40NzYgMC0yNC4xMzJsMjI2Ljg1LTIyNi44NS0yMjYuODUtMjI2Ljg4NGMtNi42NTYtNi42NTYtNi42NTYtMTcuNDc2IDAtMjQuMTMyIDMuMzQ1LTMuMzExIDcuNzE0LTQuOTgzIDEyLjA0OS00Ljk4MyA0LjM2OSAwIDguNzM4IDEuNjM4IDEyLjA4MyA0Ljk4M2wyMjYuODUgMjI2Ljg1IDIyNi44ODQtMjI2Ljg1YzMuMzExLTMuMzExIDcuNjgtNC45ODMgMTIuMDQ5LTQuOTgzczguNzM4IDEuNjM4IDEyLjA4MyA0Ljk4M2M2LjY1NiA2LjY1NiA2LjY1NiAxNy40NzYgMCAyNC4xMzJsLTIyNi44NSAyMjYuODg0IDIyNi44NSAyMjYuODV6Ii8+DQo8L3N2Zz4=') no-repeat;
+    background-size: 120%;
+  }
+
+
+  /*
+
+  Background SVG normal:
+  -----------
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+    <path d="M763.017 674.85c6.656 6.656 6.656 17.476 0 24.132s-17.476 6.656-24.132 0l-226.884-226.85-226.85 226.85c-6.656 6.656-17.476 6.656-24.132 0s-6.656-17.476 0-24.132l226.85-226.85-226.85-226.884c-6.656-6.656-6.656-17.476 0-24.132 3.345-3.311 7.714-4.983 12.049-4.983 4.369 0 8.738 1.638 12.083 4.983l226.85 226.85 226.884-226.85c3.311-3.311 7.68-4.983 12.049-4.983s8.738 1.638 12.083 4.983c6.656 6.656 6.656 17.476 0 24.132l-226.85 226.884 226.85 226.85z"/>
+  </svg>
+
+
+  Background SVG hover:
+  -----------
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+    <path fill="#ac371b" stroke="#ac371b" stroke-width="40" d="M763.017 674.85c6.656 6.656 6.656 17.476 0 24.132s-17.476 6.656-24.132 0l-226.884-226.85-226.85 226.85c-6.656 6.656-17.476 6.656-24.132 0s-6.656-17.476 0-24.132l226.85-226.85-226.85-226.884c-6.656-6.656-6.656-17.476 0-24.132 3.345-3.311 7.714-4.983 12.049-4.983 4.369 0 8.738 1.638 12.083 4.983l226.85 226.85 226.884-226.85c3.311-3.311 7.68-4.983 12.049-4.983s8.738 1.638 12.083 4.983c6.656 6.656 6.656 17.476 0 24.132l-226.85 226.884 226.85 226.85z"/>
+  </svg>
+
+   */
+}
+
+
+
+
+.bgis-search-body,
+.bgis-map-area:not(.hide-details) .bgis-show-details {
+    @apply hidden;
+}
+
+.bgis-map-area.show-search-filter:not(.hide-details) .bgis-search-body {
+    @extend %menu-body-open  !optional;
+}
+
+.bgis-map-area.show-search-filter.hide-details .bgis-search-body {
+    @extend %menu-body-open !optional;
+    @apply rounded-none;
+}
+
+.bgis-map-area.hide-details .bgis-show-details {
+    @extend %menu-body-open;
+    @apply flex-row justify-between px-2gs py-smgs text-link   overflow-hidden  ;
+    .bgis-caption {
+      line-height: unset;
+    }
+}
